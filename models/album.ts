@@ -19,7 +19,7 @@ export interface SimplifiedAlbum {
   title: string;
   slug: string;
   release_date: string | null;
-  release_type: string;
+  release_type: "LP" | "Single" | "Compilation" | "EP" | "Live" | "Remix" | "Soundtrack" | "Other";
   art_cover: string | null;
   art_cover_url: string | null;
   artist: null | SimplifiedArtist;

@@ -1,3 +1,38 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@import url("https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,700;1,400;1,700&family=Staatliches&display=swap");
+
+@layer base {
+  html {
+    font-family: Lora, sans-serif;
+  }
+
+  input[type="search"]::-webkit-search-decoration,
+  input[type="search"]::-webkit-search-cancel-button,
+  input[type="search"]::-webkit-search-results-button,
+  input[type="search"]::-webkit-search-results-decoration {
+    -webkit-appearance: none;
+  }
+}
+
+@layer components {
+  .shadow-accent {
+    @apply drop-shadow-[0_0_15px_rgba(78,255,166,0.3)];
+  }
+
+  .shadow-warning {
+    @apply drop-shadow-[0_0_15px_rgba(239,68,68,0.3)];
+  }
+
+  .input-style {
+    @apply w-full rounded-3xl bg-transparent border-2 border-primary-accent px-3 md:px-4 py-0.5 md:py-1 my-1 md:my-2
+    focus:outline-none focus:shadow-accent focus-visible:outline-none transition duration-150
+    placeholder:text-gray-500;
+  }
+
+  .section-hr {
+    @apply max-w-sm border-t-2 border-t-primary-accent mt-1 md:mt-2 mb-4 md:mb-6;
+  }
+}

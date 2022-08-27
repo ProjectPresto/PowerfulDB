@@ -1,6 +1,9 @@
+import Genre from "./genre";
+
 export default interface Band extends SimplifiedBand {
   founding_year: number;
   breakup_year: number;
+  genres: Genre[] | null;
 
   created_at: number;
   created_by: number;

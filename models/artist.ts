@@ -1,7 +1,10 @@
+import Genre from "./genre";
+
 export default interface Artist extends SimplifiedArtist {
   full_name: string | null;
   birth_date: string | null;
   death_date: string | null;
+  genres: Genre[] | null;
 
   created_at: number;
   created_by: number;

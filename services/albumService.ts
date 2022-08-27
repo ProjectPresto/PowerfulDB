@@ -1,5 +1,5 @@
-import Album from "../../models/album";
 import HttpServices from "./httpService";
+import Album from "../models/album";
 
 class AlbumService {
   async getAllAlbums() {

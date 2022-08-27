@@ -1,17 +1,26 @@
 import type { GetServerSideProps } from "next";
 import Head from "next/head";
 import { ReactElement } from "react";
-import AlbumCard from "../components/layouts/albums/AlbumCard";
+import AlbumCard from "../components/albums/AlbumCard";
 import MainLayout from "../components/layouts/MainLayout";
-import Album from "../models/album";
-import AlbumService from "../services/axios/albumService";
+
 import { NextPageWithLayout } from "./_app";
+
+import Album from "../models/album";
+import Artist from "../models/artist";
+import Band from "../models/band";
+import AlbumService from "../services/albumService";
+import ArtistService from "../services/artistService";
+import BandService from "../services/bandService";
+import AuthorCard from "../components/authors/AuthorCard";
 
 interface HomePage {
   albums: Album[];
+  artists: Artist[];
+  bands: Band[];
 }
 
-const HomePage: NextPageWithLayout<HomePage> = ({ albums }) => {
+const HomePage: NextPageWithLayout<HomePage> = ({ albums, artists, bands }) => {
   return (
     <>
       <Head>
@@ -21,11 +30,23 @@ const HomePage: NextPageWithLayout<HomePage> = ({ albums }) => {
       <div className="h-[120rem]">
         <h1 className="text-5xl font-bold">Hio cunts!</h1>
 
-        <ul>
-          {albums.map((album) => (
-            <AlbumCard key={album.id} album={album} />
-          ))}
-        </ul>
+        <div className="flex gap-10">
+          <div>
+            {albums.map((album) => (
+              <AlbumCard key={album.id} album={album} />
+            ))}
+          </div>
+          <div className="w-96 flex flex-col gap-10">
+            {artists.map((artist) => (
+              <AuthorCard key={artist.id} author={artist} />
+            ))}
+          </div>
+          <div className="min-w-[24rem] flex flex-col gap-10">
+            {bands.map((band) => (
+              <AuthorCard key={band.id} author={band} />
+            ))}
+          </div>
+        </div>
       </div>
     </>
   );
@@ -33,10 +54,14 @@ const HomePage: NextPageWithLayout<HomePage> = ({ albums }) => {
 
 export const getServerSideProps: GetServerSideProps = async () => {
   const albums = await AlbumService.getAllAlbums();
+  const artists = await ArtistService.getAllArtists();
+  const bands = await BandService.getAllBands();
 
   return {
     props: {
-      albums: albums,
+      albums,
+      artists,
+      bands,
     },
   };
 };

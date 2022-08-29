@@ -1,20 +1,28 @@
 import type { NextComponentType, NextPageContext } from "next";
 import Image from "next/image";
-import logo from "../../public/images/logo.svg";
-import { ReactElement } from "react";
 import Link from "next/link";
-import SearchInput from "./SearchInput";
+import { ReactElement, useContext, useEffect } from "react";
 
+import SearchInput from "./SearchInput";
+import logo from "../../public/images/logo.svg";
 import defaultPic from "../../public/images/default_profile_pic_dark.svg";
+import { useContributorContext } from "../../context/contributorProvider";
 
 interface Props {}
 
 const SideBar: NextComponentType<NextPageContext, {}, Props> = (props: Props) => {
+  const { contributor, logout } = useContributorContext();
+
+  useEffect(() => {
+    console.log(contributor);
+  }, [contributor]);
+
   type sideBarOptions = {
     label: string;
     icon: string;
     url: string;
   };
+
   const primaryOptions: sideBarOptions[] = [
     { label: "Home Page", icon: "home", url: "/" },
     { label: "Artists", icon: "mic_external_on", url: "/artist" },
@@ -65,7 +73,7 @@ const SideBar: NextComponentType<NextPageContext, {}, Props> = (props: Props) =>
         </div>
 
         <div className="w-full max-w-sm md:absolute inset-x-0 bottom-0 bg-primary-accent text-secondary-dark px-3 md:px-4 py-3">
-          {true ? (
+          {!contributor ? (
             <Link href="/login">
               <a className="flex items-center justify-start gap-3 md:gap-4">
                 <p className="material-symbols-outlined !text-xl md:!text-2xl">login</p>
@@ -75,21 +83,30 @@ const SideBar: NextComponentType<NextPageContext, {}, Props> = (props: Props) =>
           ) : (
             <div className="flex justify-between">
               <div className="flex items-center gap-4 truncate">
-                <Link href="/link-do-usera">
-                  <a className="aspect-square flex-none h-6 lg:h-8 object-center object-cover">
-                    <Image src={false ? "zdjecie-usera" : defaultPic} alt="User profile picture" />
+                <Link href={`/user/${contributor.user}`}>
+                  <a>
+                    <div className="block h-6 lg:h-8 aspect-square">
+                      <Image
+                        src={contributor.profile_picture ?? defaultPic}
+                        alt="User profile picture"
+                        height="32px"
+                        width="32px"
+                        layout="responsive"
+                        className="object-cover object-center rounded-full"
+                      />
+                    </div>
                   </a>
                 </Link>
                 <div className="truncate pr-6">
-                  <Link href="/link-do-usera">
-                    <a className="block font-bold truncate lg:text-xl">Username</a>
+                  <Link href={`/user/${contributor.user}`}>
+                    <a className="block font-bold truncate lg:text-xl">{contributor.username}</a>
                   </Link>
                 </div>
               </div>
               <div>
-                <Link href="/logout">
+                <button type="button" onClick={logout}>
                   <a className="material-symbols-outlined text-secondary-dark font-normal !text-lg lg:!text-2xl">logout</a>
-                </Link>
+                </button>
               </div>
             </div>
           )}

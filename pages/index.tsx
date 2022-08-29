@@ -66,8 +66,6 @@ export const getServerSideProps: GetServerSideProps = async () => {
   };
 };
 
-HomePage.getLayout = (page: ReactElement) => {
-  return <MainLayout>{page}</MainLayout>;
-};
-
 export default HomePage;
+
+HomePage.getLayout = (page: ReactElement) => <MainLayout>{page}</MainLayout>;

@@ -1,9 +1,9 @@
-import HttpServices from "./httpService";
+import HttpService from "./httpService";
 import Artist from "./../models/artist";
 
 class ArtistService {
   async getAllArtists() {
-    const { data } = await HttpServices.http.get<Artist[]>("/artist/");
+    const { data } = await HttpService.http.get<Artist[]>("/artist/");
     return data;
   }
 }

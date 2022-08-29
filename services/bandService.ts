@@ -1,9 +1,9 @@
-import HttpServices from "./httpService";
+import HttpService from "./httpService";
 import Band from "./../models/band";
 
 class BandService {
   async getAllBands() {
-    const { data } = await HttpServices.http.get<Band[]>("/band/");
+    const { data } = await HttpService.http.get<Band[]>("/band/");
     return data;
   }
 }

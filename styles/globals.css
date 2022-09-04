@@ -9,6 +9,11 @@
     font-family: Lora, sans-serif;
   }
 
+  .swiper-button-next::after,
+  .swiper-button-prev::after {
+    display: none;
+  }
+
   .toastify {
     --toastify-font-family: "Lora";
     --toastify-color-dark: #1b1c22;

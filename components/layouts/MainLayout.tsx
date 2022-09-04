@@ -9,7 +9,7 @@ const MainLayout = ({ children }: Props) => {
   return (
     <div className="flex">
       <SideBar />
-      <main className="md:ml-56 lg:ml-60 xl:ml-72 w-full">{children}</main>
+      <main className="md:pl-56 lg:pl-60 xl:pl-72 w-full">{children}</main>
     </div>
   );
 };

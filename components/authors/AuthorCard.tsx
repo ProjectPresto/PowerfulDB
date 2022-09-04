@@ -9,12 +9,13 @@ import defaultBgImage from "../../public/images/no_image.jpg";
 
 interface Props {
   author: Artist | Band;
+  authorType: "artist" | "band";
 }
 
-const AuthorCard: NextComponentType<NextPageContext, {}, Props> = ({ author }: Props) => {
+const AuthorCard: NextComponentType<NextPageContext, {}, Props> = ({ author, authorType }: Props) => {
   const genreText = author.genres?.join(" • ");
   return (
-    <Link href={author.slug}>
+    <Link href={`/${authorType}/${author.slug}`}>
       <a>
         <div
           className="rounded-3xl w-full h-40 md:h-48 !bg-cover flex flex-col justify-end items-start snap-start scroll-pl-3

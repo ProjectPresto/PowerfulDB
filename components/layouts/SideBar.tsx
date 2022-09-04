@@ -1,7 +1,7 @@
 import type { NextComponentType, NextPageContext } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { ReactElement, useContext, useEffect } from "react";
+import { ReactElement, useEffect } from "react";
 
 import SearchInput from "./SearchInput";
 import logo from "../../public/images/logo.svg";

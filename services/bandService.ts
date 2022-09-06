@@ -11,7 +11,7 @@ interface BandResponse extends GenericResponse {
 }
 
 class BandService extends GenericService {
-  async getAllBands(page: number | null = null, size: number | null = null) {
+  async getAllBands(page?: number, size?: number) {
     const { data } = await HttpService.http.get<BandResponse>(this.getPaginatedUrl("band", page, size));
     return data;
   }

@@ -8,7 +8,7 @@ interface ArtistResponse extends GenericResponse {
 }
 
 class ArtistService extends GenericService {
-  async getAllArtists(page: number | null = null, size: number | null = null) {
+  async getAllArtists(page?: number, size?: number) {
     const { data } = await HttpService.http.get<ArtistResponse>(this.getPaginatedUrl("artist", page, size));
     return data;
   }

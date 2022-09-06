@@ -22,8 +22,8 @@ const Albums: NextPageWithLayout<AlbumsPage> = ({ albums, pagination }) => {
 
 export default Albums;
 
-export const getServerSideProps: GetServerSideProps = async ({ query }: { query: { page?: number } }) => {
-  const { count, next, previous, results: albums } = await AlbumService.getAllAlbums(query.page);
+export const getServerSideProps: GetServerSideProps = async ({ query }: { query: { page?: number; size?: number } }) => {
+  const { count, next, previous, results: albums } = await AlbumService.getAllAlbums(query.page, query.size);
 
   return {
     props: {

@@ -1,16 +1,18 @@
 import HttpService from "./HttpService";
 import Band from "../models/band";
+import { GenericResponse } from "../models/generic";
+import GenericService from "./GenericService";
 
-interface BandResponse {
+interface BandResponse extends GenericResponse {
   count: number;
   next: string;
   previous: string;
   results: Band[];
 }
 
-class BandService {
+class BandService extends GenericService {
   async getAllBands(page: number | null = null, size: number | null = null) {
-    const { data } = await HttpService.http.get<BandResponse>(`/band/?page=${page ?? 1}${size && `&size=${size}`}`);
+    const { data } = await HttpService.http.get<BandResponse>(this.getPaginatedUrl("band", page, size));
     return data;
   }
 }

@@ -1,16 +1,15 @@
 import HttpService from "./HttpService";
 import Artist from "../models/artist";
+import GenericService from "./GenericService";
+import { GenericResponse } from "../models/generic";
 
-interface ArtistResponse {
-  count: number;
-  next: string;
-  previous: string;
+interface ArtistResponse extends GenericResponse {
   results: Artist[];
 }
 
-class ArtistService {
+class ArtistService extends GenericService {
   async getAllArtists(page: number | null = null, size: number | null = null) {
-    const { data } = await HttpService.http.get<ArtistResponse>(`/artist/?page=${page ?? 1}${size && `&size=${size}`}`);
+    const { data } = await HttpService.http.get<ArtistResponse>(this.getPaginatedUrl("artist", page, size));
     return data;
   }
 }

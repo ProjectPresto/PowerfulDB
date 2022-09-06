@@ -51,9 +51,9 @@ const HomePage: NextPageWithLayout<HomePage> = ({ albums, artists, bands }) => {
 };
 
 export const getServerSideProps: GetServerSideProps = async () => {
-  const { results: albums } = await AlbumService.getAllAlbums(null, 10);
-  const { results: artists } = await ArtistService.getAllArtists();
-  const { results: bands } = await BandService.getAllBands();
+  const { results: albums } = await AlbumService.getAllAlbums(1, 10);
+  const { results: artists } = await ArtistService.getAllArtists(1, 10);
+  const { results: bands } = await BandService.getAllBands(1, 10);
 
   return {
     props: {

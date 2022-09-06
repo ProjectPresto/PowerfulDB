@@ -8,3 +8,9 @@ export interface Pagination {
   next: string;
   previous: string;
 }
+
+export interface GenericResponse {
+  count: number;
+  next: string;
+  previous: string;
+}

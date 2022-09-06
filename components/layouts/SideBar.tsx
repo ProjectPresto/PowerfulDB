@@ -21,6 +21,7 @@ const SideBar: NextComponentType<NextPageContext, {}, Props> = (props: Props) =>
     label: string;
     icon: string;
     url: string;
+    auth?: boolean;
   };
 
   const primaryOptions: sideBarOptions[] = [
@@ -33,11 +34,12 @@ const SideBar: NextComponentType<NextPageContext, {}, Props> = (props: Props) =>
   ];
 
   const secondaryOptions: sideBarOptions[] = [
-    { label: "User settings", icon: "settings", url: "/user/settings" },
+    { label: "User settings", icon: "settings", url: "/user/settings", auth: true },
     { label: "About", icon: "info", url: "/about" },
   ];
 
-  const displayOption = (label: string, icon: string, url: string): ReactElement => {
+  const displayOption = (label: string, icon: string, url: string, auth?: boolean): ReactElement | null => {
+    if (auth && !contributor) return null;
     return (
       <div key={label}>
         <Link href={url}>
@@ -67,9 +69,9 @@ const SideBar: NextComponentType<NextPageContext, {}, Props> = (props: Props) =>
         <SearchInput />
 
         <div className="grid w-full gap-3 md:gap-2 xl:gap-3">
-          {primaryOptions.map(({ label, icon, url }) => displayOption(label, icon, url))}
+          {primaryOptions.map(({ label, icon, url, auth }) => displayOption(label, icon, url, auth))}
           <hr className="border-t-2 border-t-gray-600" />
-          {secondaryOptions.map(({ label, icon, url }) => displayOption(label, icon, url))}
+          {secondaryOptions.map(({ label, icon, url, auth }) => displayOption(label, icon, url, auth))}
         </div>
 
         <div className="w-full max-w-sm md:absolute inset-x-0 bottom-0 bg-primary-accent text-secondary-dark px-3 md:px-4 py-3">

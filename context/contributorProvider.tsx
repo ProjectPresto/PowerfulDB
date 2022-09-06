@@ -6,9 +6,9 @@ import jwtDecode from "jwt-decode";
 import { toast } from "react-toastify";
 
 import { Contributor } from "../models/user";
-import HttpService from "../services/httpService";
-import UserService from "../services/userService";
-import Tokens from "../models/tokens";
+import HttpService from "../services/HttpService";
+import UserService from "../services/UserService";
+import { Tokens } from "../models/generic";
 
 interface ContributorContextType {
   contributor: Contributor | null;

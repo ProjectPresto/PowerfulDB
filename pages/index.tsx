@@ -8,9 +8,9 @@ import { NextPageWithLayout } from "./_app";
 import Album from "../models/album";
 import Artist from "../models/artist";
 import Band from "../models/band";
-import AlbumService from "../services/albumService";
-import ArtistService from "../services/artistService";
-import BandService from "../services/bandService";
+import AlbumService from "../services/AlbumService";
+import ArtistService from "../services/ArtistService";
+import BandService from "../services/BandService";
 
 import HomeHero from "../components/index/HomeHero";
 import AuthorSwiper from "./../components/swipers/AuthorSwiper";
@@ -51,9 +51,9 @@ const HomePage: NextPageWithLayout<HomePage> = ({ albums, artists, bands }) => {
 };
 
 export const getServerSideProps: GetServerSideProps = async () => {
-  const albums = await AlbumService.getAllAlbums();
-  const artists = await ArtistService.getAllArtists();
-  const bands = await BandService.getAllBands();
+  const { results: albums } = await AlbumService.getAllAlbums(null, 10);
+  const { results: artists } = await ArtistService.getAllArtists();
+  const { results: bands } = await BandService.getAllBands();
 
   return {
     props: {

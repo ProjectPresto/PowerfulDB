@@ -13,10 +13,6 @@ interface Props {}
 const SideBar: NextComponentType<NextPageContext, {}, Props> = (props: Props) => {
   const { contributor, logout } = useContributorContext();
 
-  useEffect(() => {
-    console.log(contributor);
-  }, [contributor]);
-
   type sideBarOptions = {
     label: string;
     icon: string;

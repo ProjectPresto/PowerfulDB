@@ -1,7 +1,7 @@
-import Tokens from "../models/tokens";
+import { Tokens } from "../models/generic";
 import { LoginUser } from "../models/user";
-import HttpService from "./httpService";
-import { Contributor } from "./../models/user";
+import HttpService from "./HttpService";
+import { Contributor } from "../models/user";
 
 class UserService {
   async getJWT(user: LoginUser) {

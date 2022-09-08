@@ -4,13 +4,8 @@ export interface Tokens {
 }
 
 export interface Pagination {
-  count: number;
-  next: string;
-  previous: string;
-}
-
-export interface GenericResponse {
-  count: number;
+  object_count: number;
+  page_count: number;
   next: string;
   previous: string;
 }

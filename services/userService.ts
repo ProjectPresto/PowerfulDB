@@ -1,10 +1,10 @@
-import { GenericResponse, Tokens } from "../models/generic";
+import { Pagination, Tokens } from "../models/generic";
 import { LoginUser } from "../models/user";
 import HttpService from "./HttpService";
 import { Contributor } from "../models/user";
 import GenericService from "./GenericService";
 
-interface ContributorListResponse extends GenericResponse {
+interface ContributorListResponse extends Pagination {
   results: Contributor[];
 }
 

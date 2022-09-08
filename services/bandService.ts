@@ -1,9 +1,9 @@
 import HttpService from "./HttpService";
 import Band from "../models/band";
-import { GenericResponse } from "../models/generic";
+import { Pagination } from "../models/generic";
 import GenericService from "./GenericService";
 
-interface BandListResponse extends GenericResponse {
+interface BandListResponse extends Pagination {
   results: Band[];
 }
 

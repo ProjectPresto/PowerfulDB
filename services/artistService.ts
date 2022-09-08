@@ -1,9 +1,9 @@
 import HttpService from "./HttpService";
 import Artist from "../models/artist";
 import GenericService from "./GenericService";
-import { GenericResponse } from "../models/generic";
+import { Pagination } from "../models/generic";
 
-interface ArtistListResponse extends GenericResponse {
+interface ArtistListResponse extends Pagination {
   results: Artist[];
 }
 

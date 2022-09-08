@@ -3,10 +3,9 @@ import HttpService from "./HttpService";
 abstract class GenericClass {
   protected getPaginatedUrl(path: string, page?: number, size?: number) {
     let url = `/${path}/`;
-    if (page) {
-      url += `?page=${page}`;
-      if (size) url += `&size=${size}`;
-    }
+    if (page && size) url += `?page=${page}&size=${size}`;
+    else if (page && !size) url += `?page=${page}`;
+    else if (!page && size) url += `?size=${size}`;
     return url;
   }
 

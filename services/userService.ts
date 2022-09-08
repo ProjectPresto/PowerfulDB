@@ -1,9 +1,14 @@
-import { Tokens } from "../models/generic";
+import { GenericResponse, Tokens } from "../models/generic";
 import { LoginUser } from "../models/user";
 import HttpService from "./HttpService";
 import { Contributor } from "../models/user";
+import GenericService from "./GenericService";
 
-class UserService {
+interface ContributorListResponse extends GenericResponse {
+  results: Contributor[];
+}
+
+class UserService extends GenericService {
   async getJWT(user: LoginUser) {
     const { data } = await HttpService.http.post("/auth/jwt/create/", user);
     return data;
@@ -11,8 +16,8 @@ class UserService {
 
   async getContributor(userId: number) {
     try {
-      const { data }: { data: Contributor[] } = await HttpService.http.get(`/contributor/?user=${userId}`);
-      return data[0];
+      const { data }: { data: ContributorListResponse } = await HttpService.http.get(`/contributor/?user=${userId}`);
+      return data.results[0];
     } catch (error: any) {
       if (error.response.status === 400) {
         return this.createContributor(userId);

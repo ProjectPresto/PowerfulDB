@@ -1,15 +1,15 @@
 import HttpService from "./HttpService";
-import Artist from "../models/artist";
 import GenericService from "./GenericService";
-import { Pagination } from "../models/generic";
+import Artist from "../models/artist";
+import { Pagination, urlQueries } from "../models/generic";
 
 interface ArtistListResponse extends Pagination {
   results: Artist[];
 }
 
 class ArtistService extends GenericService {
-  async getPaginatedArtistList(page?: number, size?: number) {
-    return super.getPaginatedList<ArtistListResponse>("artist", page, size);
+  async getArtistList(urlQueries: urlQueries) {
+    return super.getList<ArtistListResponse>("artist", urlQueries);
   }
 }
 

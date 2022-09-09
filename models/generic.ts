@@ -9,3 +9,9 @@ export interface Pagination {
   next: string;
   previous: string;
 }
+
+export interface urlQueries {
+  page?: number;
+  size?: number;
+  sort?: string;
+}

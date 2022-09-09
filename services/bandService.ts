@@ -1,15 +1,15 @@
 import HttpService from "./HttpService";
-import Band from "../models/band";
-import { Pagination } from "../models/generic";
 import GenericService from "./GenericService";
+import Band from "../models/band";
+import { Pagination, urlQueries } from "../models/generic";
 
 interface BandListResponse extends Pagination {
   results: Band[];
 }
 
 class BandService extends GenericService {
-  async getPaginatedBandList(page?: number, size?: number) {
-    return super.getPaginatedList<BandListResponse>("band", page, size);
+  async getBandList(urlQueries: urlQueries) {
+    return super.getList<BandListResponse>("band", urlQueries);
   }
 }
 

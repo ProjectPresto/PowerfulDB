@@ -1,16 +1,19 @@
 import HttpService from "./HttpService";
+import { urlQueries } from "../models/generic";
 
 abstract class GenericClass {
-  protected getPaginatedUrl(path: string, page?: number, size?: number) {
+  protected getUrl(path: string, urlQueries: urlQueries) {
     let url = `/${path}/`;
-    if (page && size) url += `?page=${page}&size=${size}`;
-    else if (page && !size) url += `?page=${page}`;
-    else if (!page && size) url += `?size=${size}`;
+
+    Object.entries(urlQueries).forEach(([key, value], index) => {
+      if (index === 0) url += `?${key}=${value}`;
+      else url += `&${key}=${value}`;
+    });
     return url;
   }
 
-  public async getPaginatedList<T>(path: string, page?: number, size?: number) {
-    const { data } = await HttpService.http.get<T>(this.getPaginatedUrl(path, page, size));
+  public async getList<T>(path: string, urlQueries: urlQueries) {
+    const { data } = await HttpService.http.get<T>(this.getUrl(path, urlQueries));
     return data;
   }
 }

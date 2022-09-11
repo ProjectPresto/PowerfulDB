@@ -33,7 +33,7 @@ const AlbumIndex: NextPageWithLayout<AlbumIndex> = ({ albums, pagination }) => {
       <div className="px-6 lg:px-14 py-8">
         <TitleComponent content="Album list" />
         <div className="flex mb-10">
-          <SortComponent options={sortOptions} defaultValue="title" />
+          <SortComponent options={sortOptions} />
         </div>
         <div
           className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6

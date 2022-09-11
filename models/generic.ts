@@ -10,7 +10,7 @@ export interface Pagination {
   previous: string;
 }
 
-export interface urlQueries {
+export interface UrlQueries {
   page?: number;
   size?: number;
   sort?: string;

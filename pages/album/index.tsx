@@ -6,10 +6,11 @@ import { NextPageWithLayout } from "../_app";
 import AlbumService from "../../services/AlbumService";
 import AlbumCard from "../../components/albums/AlbumCard";
 import MainLayout from "../../components/layouts/MainLayout";
-import PaginationComponent from "../../components/generic/PaginationComponent";
 import TitleComponent from "../../components/generic/TitleComponent";
+import PaginationComponent from "../../components/generic/PaginationComponent";
+import SortComponent from "../../components/generic/SortComponent";
 import Album from "../../models/album";
-import { Pagination } from "../../models/generic";
+import { Pagination, UrlQueries } from "../../models/generic";
 
 interface AlbumIndex {
   albums: Album[];
@@ -17,6 +18,13 @@ interface AlbumIndex {
 }
 
 const AlbumIndex: NextPageWithLayout<AlbumIndex> = ({ albums, pagination }) => {
+  const sortOptions = [
+    { value: "title", label: "Title Ascending" },
+    { value: "-title", label: "Title Descending" },
+    { value: "release_date", label: "Oldest First" },
+    { value: "-release_date", label: "Newest First" },
+  ];
+
   return (
     <>
       <Head>
@@ -24,6 +32,9 @@ const AlbumIndex: NextPageWithLayout<AlbumIndex> = ({ albums, pagination }) => {
       </Head>
       <div className="px-6 lg:px-14 py-8">
         <TitleComponent content="Album list" />
+        <div className="flex mb-10">
+          <SortComponent options={sortOptions} defaultValue="title" />
+        </div>
         <div
           className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6
                     gap-x-4 md:gap-x-8 gap-y-8 md:gap-y-12"
@@ -40,8 +51,8 @@ const AlbumIndex: NextPageWithLayout<AlbumIndex> = ({ albums, pagination }) => {
 
 export default AlbumIndex;
 
-export const getServerSideProps: GetServerSideProps = async ({ query }: { query: { page?: number; size?: number } }) => {
-  const { object_count, page_count, next, previous, results: albums } = await AlbumService.getList(query);
+export const getServerSideProps: GetServerSideProps = async ({ query }: { query: UrlQueries }) => {
+  const { object_count, page_count, next, previous, results: albums } = await AlbumService.getAlbumList(query);
 
   return {
     props: {

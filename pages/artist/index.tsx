@@ -7,7 +7,7 @@ import PaginationComponent from "../../components/generic/PaginationComponent";
 import TitleComponent from "../../components/generic/TitleComponent";
 import AuthorCard from "./../../components/authors/AuthorCard";
 import Artist from "../../models/artist";
-import { Pagination } from "../../models/generic";
+import { Pagination, UrlQueries } from "../../models/generic";
 import { GetServerSideProps } from "next";
 import ArtistService from "../../services/ArtistService";
 
@@ -40,8 +40,8 @@ const ArtistIndex: NextPageWithLayout<ArtistIndex> = ({ artists, pagination }) =
 
 export default ArtistIndex;
 
-export const getServerSideProps: GetServerSideProps = async ({ query }: { query: { page?: number; size?: number } }) => {
-  const { object_count, page_count, next, previous, results: artists } = await ArtistService.getList(query);
+export const getServerSideProps: GetServerSideProps = async ({ query }: { query: UrlQueries }) => {
+  const { object_count, page_count, next, previous, results: artists } = await ArtistService.getArtistList(query);
 
   return {
     props: {

@@ -9,7 +9,7 @@ import PaginationComponent from "../../components/generic/PaginationComponent";
 import TitleComponent from "../../components/generic/TitleComponent";
 import AuthorCard from "../../components/authors/AuthorCard";
 import Band from "../../models/band";
-import { Pagination } from "../../models/generic";
+import { Pagination, UrlQueries } from "../../models/generic";
 
 interface BandIndex {
   bands: Band[];
@@ -40,7 +40,7 @@ const BandIndex: NextPageWithLayout<BandIndex> = ({ bands, pagination }) => {
 
 export default BandIndex;
 
-export const getServerSideProps: GetServerSideProps = async ({ query }: { query: { page?: number; size?: number } }) => {
+export const getServerSideProps: GetServerSideProps = async ({ query }: { query: UrlQueries }) => {
   const { object_count, page_count, next, previous, results: bands } = await BandService.getBandList(query);
 
   return {

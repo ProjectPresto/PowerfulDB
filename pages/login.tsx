@@ -1,14 +1,12 @@
 import type { NextPage } from "next";
 import Head from "next/head";
 import Link from "next/link";
-import { useRouter } from "next/router";
 import { useState } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { useContributorContext } from "../context/contributorProvider";
 
 const Login: NextPage = () => {
-  const router = useRouter();
   const [error, setError] = useState("");
   const { login } = useContributorContext();
 

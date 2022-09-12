@@ -46,6 +46,7 @@ const customStyles: StylesConfig = {
     ...provider,
     borderRadius: "1.5rem",
     border: "2px solid #4EFFA6",
+    zIndex: 1000,
   }),
 
   singleValue: (provider, state) => ({

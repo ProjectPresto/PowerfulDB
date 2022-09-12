@@ -31,7 +31,7 @@ const BandIndex: NextPageWithLayout<BandIndex> = ({ bands, pagination }) => {
         <title>Band List | PowerfulDB</title>
       </Head>
       <div className="px-6 lg:px-14 py-8">
-        <TitleComponent content="Album list" />
+        <TitleComponent content="Band list" />
         <div className="flex mb-10">
           <SortComponent options={sortOptions} />
         </div>

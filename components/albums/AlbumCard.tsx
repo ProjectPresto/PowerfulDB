@@ -14,7 +14,7 @@ const AlbumCard: NextComponentType<NextPageContext, {}, Props> = ({ album }: Pro
   return (
     <div className="group">
       <Link href={`/album/${album.slug}`}>
-        <div className="relative group-hover:scale-95 transition-transform shadow-lg ease-in-out block aspect-square">
+        <div className="relative group-hover:scale-95 transition-transform shadow-lg ease-in-out block aspect-square cursor-pointer">
           <Image
             src={album.art_cover || album.art_cover_url || defaultArtCover}
             alt={`${album.title} art cover`}

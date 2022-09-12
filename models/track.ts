@@ -1,9 +1,11 @@
+import { Article } from "./generic";
+
 export default interface Track extends SimplifiedTrack {
   album: number;
 
-  created_at: number;
+  created_at: string;
   created_by: number;
-  updated_at: number;
+  updated_at: string;
   updated_by: number;
 }
 
@@ -13,4 +15,8 @@ export interface SimplifiedTrack {
   slug: string;
   position: number | null;
   duration: string | null;
+}
+
+export interface TrackArticle extends Article {
+  track: number;
 }

@@ -16,6 +16,11 @@ abstract class GenericClass {
     const { data } = await HttpService.http.get<T>(this.getUrl(path, urlQueries));
     return data;
   }
+
+  public async getItem<T>(path: string, lookup: string | number) {
+    const { data } = await HttpService.http.get<T>(`/${path}/${lookup}/`);
+    return data;
+  }
 }
 
 export default GenericClass;

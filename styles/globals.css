@@ -29,6 +29,14 @@
 }
 
 @layer components {
+  .section-title {
+    @apply font-sans text-3xl md:text-4xl lg:text-5xl;
+  }
+
+  .section-hr {
+    @apply max-w-sm border-t-2 border-t-primary-accent mt-1 md:mt-2 mb-4 md:mb-6;
+  }
+
   .input-style {
     @apply w-full rounded-3xl bg-transparent border-2 border-primary-accent px-3 md:px-4 py-0.5 md:py-1 my-1 md:my-2
     focus:outline-none focus:shadow-accent focus-visible:outline-none transition duration-150 placeholder:text-gray-500;

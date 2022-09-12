@@ -1,15 +1,23 @@
 import HttpService from "./HttpService";
 import GenericService from "./GenericService";
-import Album from "../models/album";
+import Album, { AlbumArticle } from "../models/album";
 import { Pagination, UrlQueries } from "../models/generic";
 
-interface AlbumListResponse extends Pagination {
+interface GetAlbumListResponse extends Pagination {
   results: Album[];
 }
 
 class AlbumService extends GenericService {
   async getAlbumList(urlQueries: UrlQueries) {
-    return super.getList<AlbumListResponse>("album", urlQueries);
+    return super.getList<GetAlbumListResponse>("album", urlQueries);
+  }
+
+  async getAlbum(slug: string) {
+    return super.getItem<Album>("album", slug);
+  }
+
+  async getAlbumArticle(albumSlug: string) {
+    return super.getItem<AlbumArticle>("album-article", albumSlug);
   }
 }
 

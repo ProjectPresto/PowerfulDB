@@ -1,5 +1,6 @@
 import Artist, { SimplifiedArtist } from "./artist";
 import Band, { SimplifiedBand } from "./band";
+import { Article } from "./generic";
 import Genre from "./genre";
 import { SimplifiedTrack } from "./track";
 
@@ -8,9 +9,9 @@ export default interface Album extends SimplifiedAlbum {
   band: null | Band;
   tracks: SimplifiedTrack;
 
-  created_at: number;
+  created_at: string;
   created_by: number;
-  updated_at: number;
+  updated_at: string;
   updated_by: number;
 }
 
@@ -25,4 +26,8 @@ export interface SimplifiedAlbum {
   artist: null | SimplifiedArtist;
   band: null | SimplifiedBand;
   genres: null | Genre[];
+}
+
+export interface AlbumArticle extends Article {
+  album: number;
 }

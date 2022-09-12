@@ -15,3 +15,14 @@ export interface UrlQueries {
   size?: number;
   sort?: string;
 }
+
+export interface Article {
+  id: number;
+  article_text: string;
+  source?: string;
+  source_url?: string;
+  created_at: string;
+  created_by: number;
+  updated_at: string;
+  updated_by: number;
+}

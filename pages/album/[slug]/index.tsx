@@ -37,9 +37,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   let albumArticle = null;
   try {
     albumArticle = await AlbumService.getAlbumArticle(slug as string);
-  } catch (e) {
-    const albumArticle = null;
-  }
+  } catch (e) {}
 
   return {
     props: {

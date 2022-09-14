@@ -66,39 +66,37 @@ const PaginationComponent: NextComponentType<NextPageContext, {}, Props> = ({ pa
     });
   };
 
-  return (
-    pagination.page_count !== 1 && (
-      <div className="my-8 mx-auto flex rounded-lg bg-primary-dark w-fit overflow-hidden">
+  return pagination.page_count !== 1 ? (
+    <div className="my-8 mx-auto flex rounded-lg bg-primary-dark w-fit overflow-hidden">
+      <button
+        type="submit"
+        className="py-3 px-4 disabled:text-gray-500"
+        onClick={() => handlePageChange(currentPage - 1)}
+        disabled={currentPage === 1}
+      >
+        {"«"}
+      </button>
+      {pagesList.map((pageNum, index) => (
         <button
+          key={index}
           type="submit"
-          className="py-3 px-4 disabled:text-gray-500"
-          onClick={() => handlePageChange(currentPage - 1)}
-          disabled={currentPage === 1}
+          className={`flex justify-center items-center py-3 px-4 enabled:hover:opacity-60 ${pageNum === currentPage && "bg-secondary-accent"}`}
+          disabled={pageNum === -1}
+          onClick={() => handlePageChange(pageNum)}
         >
-          {"«"}
+          {pageNum !== -1 ? pageNum : "..."}
         </button>
-        {pagesList.map((pageNum, index) => (
-          <button
-            key={index}
-            type="submit"
-            className={`flex justify-center items-center py-3 px-4 enabled:hover:opacity-60 ${pageNum === currentPage && "bg-secondary-accent"}`}
-            disabled={pageNum === -1}
-            onClick={() => handlePageChange(pageNum)}
-          >
-            {pageNum !== -1 ? pageNum : "..."}
-          </button>
-        ))}
-        <button
-          type="submit"
-          className="py-3 px-4 disabled:text-gray-500"
-          onClick={() => handlePageChange(currentPage + 1)}
-          disabled={currentPage === pagination.page_count}
-        >
-          {"»"}
-        </button>
-      </div>
-    )
-  );
+      ))}
+      <button
+        type="submit"
+        className="py-3 px-4 disabled:text-gray-500"
+        onClick={() => handlePageChange(currentPage + 1)}
+        disabled={currentPage === pagination.page_count}
+      >
+        {"»"}
+      </button>
+    </div>
+  ) : null;
 };
 
 export default PaginationComponent;

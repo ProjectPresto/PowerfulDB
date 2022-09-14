@@ -26,11 +26,14 @@ const ArticleContainer: NextComponentType<NextPageContext, {}, Props> = ({ artic
         }
       </div>
 
-      <hr className="section-hr"></hr>
+      <hr className="section-hr mb-0"></hr>
 
       {article ? (
         <>
-          <article className={`mx-auto prose prose-invert lg:prose-xl  w-full text-justify overflow-hidden ${!isArticleOpen && "h-96"}`} id="article">
+          <article
+            className={`mx-auto prose prose-invert lg:prose-xl  w-full text-justify overflow-hidden ${!isArticleOpen && "h-[36rem]"}`}
+            id="article"
+          >
             <div dangerouslySetInnerHTML={{ __html: article.article_text }}></div>
             {article.source && (
               <p className="italic">
@@ -48,7 +51,7 @@ const ArticleContainer: NextComponentType<NextPageContext, {}, Props> = ({ artic
           <button
             type="button"
             id="read-more"
-            className={`${!isArticleOpen && "absolute bottom-0"} w-full flex h-16 items-end text-xl font-bold justify-center`}
+            className={`${!isArticleOpen ? "absolute bottom-0 pt-24" : "pt-4"} w-full flex items-end text-xl font-bold justify-center`}
             style={{ background: isArticleOpen ? "none" : "linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, #1B1C22 100%)" }}
             onClick={() => setIsArticleOpen(!isArticleOpen)}
           >

@@ -11,6 +11,7 @@ import PaginationComponent from "../../components/generic/PaginationComponent";
 import SortComponent from "../../components/generic/SortComponent";
 import Album from "../../models/album";
 import { Pagination, UrlQueries } from "../../models/generic";
+import { toast } from "react-toastify";
 
 interface AlbumIndex {
   albums: Album[];

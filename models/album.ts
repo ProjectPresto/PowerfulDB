@@ -5,9 +5,10 @@ import Genre from "./genre";
 import { SimplifiedTrack } from "./track";
 
 export default interface Album extends SimplifiedAlbum {
-  artist: null | Artist;
-  band: null | Band;
-  tracks: SimplifiedTrack;
+  artist?: Artist;
+  band?: Band;
+  full_duration?: string;
+  tracks: SimplifiedTrack[];
 
   created_at: string;
   created_by: number;
@@ -19,13 +20,13 @@ export interface SimplifiedAlbum {
   id: number;
   title: string;
   slug: string;
-  release_date: string | null;
+  release_date?: string;
   release_type: "LP" | "Single" | "Compilation" | "EP" | "Live" | "Remix" | "Soundtrack" | "Other";
-  art_cover: string | null;
-  art_cover_url: string | null;
-  artist: null | SimplifiedArtist;
-  band: null | SimplifiedBand;
-  genres: null | Genre[];
+  art_cover?: string;
+  art_cover_url?: string;
+  artist?: SimplifiedArtist;
+  band?: SimplifiedBand;
+  genres?: Genre[];
 }
 
 export interface AlbumArticle extends Article {

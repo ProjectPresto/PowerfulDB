@@ -8,6 +8,7 @@ import MainLayout from "../../../components/layouts/MainLayout";
 import AlbumHero from "../../../components/albums/viewPage/AlbumHero";
 import Head from "next/head";
 import ArticleContainer from "../../../components/generic/ArticleContainer";
+import TracklistContainer from "../../../components/albums/viewPage/TracklistContainer";
 
 interface AlbumView {
   album: Album;
@@ -25,6 +26,7 @@ const AlbumView: NextPageWithLayout<AlbumView> = ({ album, albumArticle }) => {
       <AlbumHero album={album} />
       <div className="flex flex-col gap-12 md:gap-16 px-5 md:px-10 lg:px-14 py-8 mt-5 md:mt-10 mx-auto max-w-screen-lg w-full">
         <ArticleContainer article={albumArticle} />
+        <TracklistContainer tracks={album.tracks} fullDuration={album.full_duration} />
       </div>
     </>
   );

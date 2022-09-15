@@ -16,8 +16,6 @@ interface AlbumView {
 }
 
 const AlbumView: NextPageWithLayout<AlbumView> = ({ album, albumArticle }) => {
-  console.log(albumArticle);
-
   return (
     <>
       <Head>

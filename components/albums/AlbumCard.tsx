@@ -4,13 +4,16 @@ import Image from "next/image";
 import Album, { SimplifiedAlbum } from "../../models/album";
 
 import defaultArtCover from "../../public/images/no_image.jpg";
+import { useRouter } from "next/router";
 
 interface Props {
   album: Album | SimplifiedAlbum;
 }
 
 const AlbumCard: NextComponentType<NextPageContext, {}, Props> = ({ album }: Props) => {
+  const router = useRouter();
   const genreText = album.genres?.map((genre) => genre.name).join(", ");
+
   return (
     <div className="group">
       <Link href={`/album/${album.slug}`}>
@@ -21,7 +24,7 @@ const AlbumCard: NextComponentType<NextPageContext, {}, Props> = ({ album }: Pro
             layout="fill"
             className="object-cover object-center "
           />
-          {album.release_type !== "LP" && (
+          {album.release_type !== "LP" && !router.query.release_type && (
             <div
               className="absolute bottom-0 right-0 text-xs md:text-sm font-bold bg-secondary-accent pr-1 md:pr-2
                       pl-2 md:pl-3 py-1 rounded-tl-xl md:rounded-tl-2xl"

@@ -6,8 +6,15 @@ abstract class GenericClass {
     let url = `/${path}/`;
 
     Object.entries(urlQueries).forEach(([key, value], index) => {
-      if (index === 0) url += `?${key}=${value}`;
-      else url += `&${key}=${value}`;
+      if (Array.isArray(value)) {
+        value.forEach((param, paramIndex) => {
+          if (paramIndex === 0 && index === 0) url += `?${key}=${param}`;
+          else url += `&${key}=${param}`;
+        });
+      } else {
+        if (index === 0) url += `?${key}=${value}`;
+        else url += `&${key}=${value}`;
+      }
     });
     return url;
   }

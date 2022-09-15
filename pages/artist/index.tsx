@@ -10,7 +10,7 @@ import MainLayout from "../../components/layouts/MainLayout";
 import TitleComponent from "../../components/generic/TitleComponent";
 import AuthorCard from "./../../components/authors/AuthorCard";
 import PaginationComponent from "../../components/generic/PaginationComponent";
-import SortComponent from "../../components/generic/SortComponent";
+import SelectFilterComponent from "../../components/generic/filters/SelectFilterComponent";
 
 interface ArtistIndex {
   artists: Artist[];
@@ -33,7 +33,7 @@ const ArtistIndex: NextPageWithLayout<ArtistIndex> = ({ artists, pagination }) =
       <div className="px-6 lg:px-14 py-8">
         <TitleComponent content="Artist list" />
         <div className="flex mb-10">
-          <SortComponent options={sortOptions} />
+          <SelectFilterComponent options={sortOptions} />
         </div>
         <div
           className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 

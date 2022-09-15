@@ -8,10 +8,10 @@ import AlbumCard from "../../components/albums/AlbumCard";
 import MainLayout from "../../components/layouts/MainLayout";
 import TitleComponent from "../../components/generic/TitleComponent";
 import PaginationComponent from "../../components/generic/PaginationComponent";
-import SortComponent from "../../components/generic/SortComponent";
+import SelectFilterComponent from "../../components/generic/filters/SelectFilterComponent";
 import Album from "../../models/album";
 import { Pagination, UrlQueries } from "../../models/generic";
-import { toast } from "react-toastify";
+import GenreFilterComponent from "../../components/generic/filters/GenreFilterComponent";
 
 interface AlbumIndex {
   albums: Album[];
@@ -26,6 +26,17 @@ const AlbumIndex: NextPageWithLayout<AlbumIndex> = ({ albums, pagination }) => {
     { value: "-release_date", label: "Newest First" },
   ];
 
+  const typeOptions = [
+    { value: "LP", label: "LP" },
+    { value: "Single", label: "Single" },
+    { value: "Compilation", label: "Compilation" },
+    { value: "EP", label: "EP" },
+    { value: "Live", label: "Live" },
+    { value: "Remix", label: "Remix" },
+    { value: "Soundtrack", label: "Soundtrack" },
+    { value: "Other", label: "Other" },
+  ];
+
   return (
     <>
       <Head>
@@ -33,8 +44,10 @@ const AlbumIndex: NextPageWithLayout<AlbumIndex> = ({ albums, pagination }) => {
       </Head>
       <div className="px-6 lg:px-14 py-8">
         <TitleComponent content="Album list" />
-        <div className="flex mb-10">
-          <SortComponent options={sortOptions} />
+        <div className="flex mb-10 gap-5">
+          <SelectFilterComponent options={sortOptions} filter="ordering" placeholder="Sort..." isClearable={true} />
+          <GenreFilterComponent />
+          <SelectFilterComponent options={typeOptions} filter="release_type" placeholder="Release type..." isClearable={true} />
         </div>
         <div
           className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6

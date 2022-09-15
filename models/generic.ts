@@ -14,6 +14,8 @@ export interface UrlQueries {
   page?: number;
   size?: number;
   sort?: string;
+  search?: string;
+  genres?: [];
 }
 
 export interface Article {

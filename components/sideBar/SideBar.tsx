@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ReactElement, useEffect } from "react";
 
-import SearchInput from "./SearchInput";
+import SearchInput from "./search/SearchInput";
 import logo from "../../public/images/logo.svg";
 import defaultPic from "../../public/images/default_profile_pic_dark.svg";
 import { useContributorContext } from "../../context/contributorProvider";
@@ -62,12 +62,14 @@ const SideBar: NextComponentType<NextPageContext, {}, Props> = (props: Props) =>
           </Link>
         </div>
 
-        <SearchInput />
+        <div className="flex flex-col gap-6 md:gap-4 xl:gap-6 overflow-hidden h-full rounded-t-2xl">
+          <SearchInput />
 
-        <div className="grid w-full gap-3 md:gap-2 xl:gap-3">
-          {primaryOptions.map(({ label, icon, url, auth }) => displayOption(label, icon, url, auth))}
-          <hr className="border-t-2 border-t-gray-600" />
-          {secondaryOptions.map(({ label, icon, url, auth }) => displayOption(label, icon, url, auth))}
+          <div className="grid w-full gap-3 md:gap-2 xl:gap-3">
+            {primaryOptions.map(({ label, icon, url, auth }) => displayOption(label, icon, url, auth))}
+            <hr className="border-t-2 border-t-gray-600" />
+            {secondaryOptions.map(({ label, icon, url, auth }) => displayOption(label, icon, url, auth))}
+          </div>
         </div>
 
         <div className="w-full max-w-sm md:absolute inset-x-0 bottom-0 bg-primary-accent text-secondary-dark px-3 md:px-4 py-3">

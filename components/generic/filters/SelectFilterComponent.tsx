@@ -4,6 +4,7 @@ import { useState } from "react";
 import Select from "react-select";
 
 import { StylesConfig } from "react-select/dist/declarations/src";
+import { UrlQueries } from "../../../models/generic";
 
 export interface Option {
   value: string;

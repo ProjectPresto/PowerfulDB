@@ -33,7 +33,7 @@ const BandIndex: NextPageWithLayout<BandIndex> = ({ bands, pagination }) => {
       <div className="px-6 lg:px-14 py-8">
         <TitleComponent content="Band list" />
         <div className="flex mb-10">
-          <SelectFilterComponent options={sortOptions} />
+          <SelectFilterComponent options={sortOptions} filter="ordering" placeholder="Sort..." isClearable={true} />
         </div>
         <div
           className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 

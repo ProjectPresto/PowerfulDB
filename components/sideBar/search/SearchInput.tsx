@@ -57,7 +57,7 @@ const SearchInput: NextComponentType<NextPageContext, {}> = () => {
           className="z-0 absolute top-0 w-full transition-all rounded-3xl p-5 pt-14 bg-secondary-dark
                     hover:translate-y-0 peer-focus:translate-y-0 translate-y-[-100%] max-h-[46rem] overflow-y-auto coolscroll"
         >
-          {searchQuery === "" ? "Type query to search" : !queryResults ? "Searching..." : <ResultsComponent data={queryResults} />}
+          {searchQuery === "" ? "Type to search" : !queryResults ? "Searching..." : <ResultsComponent data={queryResults} />}
         </div>
       </form>
     </div>

@@ -53,7 +53,7 @@ const TracklistContainer: NextComponentType<NextPageContext, {}, Props> = ({ tra
                       {track.featured_authors
                         .map<React.ReactNode>((fa) => (
                           <Link key={fa.artist?.id || fa.band?.id} href={`/${fa.artist ? "artist" : "band"}/${fa.artist?.slug || fa.band?.slug}`}>
-                            <a>{fa.artist?.name || fa.band?.name}</a>
+                            <a className="hover:underline">{fa.artist?.name || fa.band?.name}</a>
                           </Link>
                         ))
                         .reduce((prev, curr) => [prev, ", ", curr])}

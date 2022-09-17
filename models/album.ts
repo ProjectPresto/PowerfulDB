@@ -9,6 +9,7 @@ export default interface Album extends SimplifiedAlbum {
   band?: Band;
   full_duration?: string;
   tracks: SimplifiedTrack[];
+  article: AlbumArticle;
 
   created_at: string;
   created_by: number;

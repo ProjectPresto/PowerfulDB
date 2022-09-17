@@ -15,10 +15,6 @@ class AlbumService extends GenericService {
   async getAlbum(slug: string) {
     return super.getItem<Album>("album", slug);
   }
-
-  async getAlbumArticle(albumSlug: string) {
-    return super.getItem<AlbumArticle>("album-article", albumSlug);
-  }
 }
 
 export default new AlbumService();

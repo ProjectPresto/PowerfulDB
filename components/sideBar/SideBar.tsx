@@ -8,7 +8,7 @@ import logo from "../../public/images/logo.svg";
 import defaultPic from "../../public/images/default_profile_pic_dark.svg";
 import { useContributorContext } from "../../context/contributorProvider";
 
-interface Props {}
+interface Props { }
 
 const SideBar: NextComponentType<NextPageContext, {}, Props> = (props: Props) => {
   const { contributor, logout } = useContributorContext();
@@ -22,9 +22,9 @@ const SideBar: NextComponentType<NextPageContext, {}, Props> = (props: Props) =>
 
   const primaryOptions: sideBarOptions[] = [
     { label: "Home Page", icon: "home", url: "/" },
-    { label: "Artists", icon: "mic_external_on", url: "/artist" },
-    { label: "Bands", icon: "groups", url: "/band" },
     { label: "Albums", icon: "album", url: "/album" },
+    { label: "Bands", icon: "groups", url: "/band" },
+    { label: "Artists", icon: "mic_external_on", url: "/artist" },
     { label: "Genres", icon: "collections_bookmark", url: "/genre" },
     { label: "Users", icon: "account_circle", url: "/user" },
   ];

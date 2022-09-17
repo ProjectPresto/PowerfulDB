@@ -59,7 +59,7 @@ const ArticleContainer: NextComponentType<NextPageContext, {}, Props> = ({ artic
           </button>
         </>
       ) : (
-        <div className="article-style text-sm md:text-base text-justify">
+        <div className="article-style text-sm md:text-base text-justify mt-6">
           <p>
             There is no article for this album yet.{" "}
             {contributor ? (

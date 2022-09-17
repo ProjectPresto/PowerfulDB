@@ -13,7 +13,7 @@ const SearchInput: NextComponentType<NextPageContext, {}> = () => {
   const [queryResults, setQueryResults] = useState<{ albums: Album[]; artists: Artist[]; bands: Band[] }>();
 
   const handleSubmit = () => {
-    console.log(searchQuery);
+    // TODO: Search submit 
   };
 
   const search = async (q: string) => {

@@ -13,9 +13,11 @@ export interface Pagination {
 export interface UrlQueries {
   page?: number;
   size?: number;
-  sort?: string;
+  ordering?: string;
   search?: string;
   genres?: [];
+  artist?: number;
+  band?: number;
 }
 
 export interface Article {

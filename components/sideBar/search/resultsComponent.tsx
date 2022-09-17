@@ -11,8 +11,6 @@ interface Props {
 }
 
 const ResultsComponent: NextComponentType<NextPageContext, {}, Props> = ({ data }: Props) => {
-  console.log(data);
-
   return (
     <>
       <div className="space-y-4 font-normal">

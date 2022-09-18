@@ -34,14 +34,20 @@ const HomePage: NextPageWithLayout<HomePage> = ({ albums, artists, bands }) => {
 
         <div className="flex flex-col gap-10">
           <div className="w-full px-10 mt-6">
+            <h2 className="font-sans text-2xl md:text-3xl">Popular artists</h2>
+            <hr className="section-hr" />
             <AuthorSwiper authors={artists} authorType="artist" />
           </div>
 
           <div className="w-full px-10 mt-6">
+            <h2 className="font-sans text-2xl md:text-3xl">Popular bands</h2>
+            <hr className="section-hr" />
             <AuthorSwiper authors={bands} authorType="band" />
           </div>
 
           <div className="w-full px-10 mt-6">
+            <h2 className="font-sans text-2xl md:text-3xl">Popular albums</h2>
+            <hr className="section-hr" />
             <AlbumSwiper albums={albums} />
           </div>
         </div>

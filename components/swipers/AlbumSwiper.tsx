@@ -8,7 +8,7 @@ import SwiperContainer from "./SwiperContainer";
 
 interface Props {
   albums: Album[];
-  type: "wide" | "narrow"
+  type?: "wide" | "narrow"
 }
 
 const AlbumSwiper: NextComponentType<NextPageContext, {}, Props> = ({ albums, type = "wide" }: Props) => {

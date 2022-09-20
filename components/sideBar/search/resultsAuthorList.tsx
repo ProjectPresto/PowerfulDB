@@ -3,9 +3,10 @@ import Link from "next/link";
 import Image from "next/image";
 import { ReactNode } from "react";
 
-import Artist from "../../../models/artist";
-import Band from "../../../models/band";
-import defaultBgImage from "../../../public/images/no_image.jpg";
+import Artist from "@models/artist";
+import Band from "@models/band";
+
+import defaultBgImage from "@public/images/no_image.jpg";
 
 interface Props {
   artists: Artist[];

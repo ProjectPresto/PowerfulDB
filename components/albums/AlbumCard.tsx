@@ -1,10 +1,11 @@
 import type { NextComponentType, NextPageContext } from "next";
 import Link from "next/link";
 import Image from "next/image";
-import Album, { SimplifiedAlbum } from "../../models/album";
-
-import defaultArtCover from "../../public/images/no_image.jpg";
 import { useRouter } from "next/router";
+
+import Album, { SimplifiedAlbum } from "@models/album";
+
+import defaultArtCover from "@public/images/no_image.jpg";
 
 interface Props {
   album: Album | SimplifiedAlbum;

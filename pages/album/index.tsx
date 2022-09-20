@@ -2,16 +2,16 @@ import { GetServerSideProps } from "next";
 import Head from "next/head";
 import { ReactElement } from "react";
 
-import { NextPageWithLayout } from "../_app";
-import AlbumService from "../../services/AlbumService";
-import AlbumCard from "../../components/albums/AlbumCard";
-import MainLayout from "../../components/layouts/MainLayout";
-import TitleComponent from "../../components/generic/TitleComponent";
-import PaginationComponent from "../../components/generic/PaginationComponent";
-import SelectFilterComponent from "../../components/generic/filters/SelectFilterComponent";
-import Album from "../../models/album";
-import { Pagination, UrlQueries } from "../../models/generic";
-import GenreFilterComponent from "../../components/generic/filters/GenreFilterComponent";
+import { NextPageWithLayout } from "@pages/_app";
+import AlbumService from "@services/AlbumService";
+import AlbumCard from "@components/albums/AlbumCard";
+import MainLayout from "@components/layouts/MainLayout";
+import TitleComponent from "@components/generic/TitleComponent";
+import PaginationComponent from "@components/generic/PaginationComponent";
+import SelectFilterComponent from "@components/generic/filters/SelectFilterComponent";
+import GenreFilterComponent from "@components/generic/filters/GenreFilterComponent";
+import Album from "@models/album";
+import { Pagination, UrlQueries } from "@models/generic";
 
 interface AlbumIndex {
   albums: Album[];

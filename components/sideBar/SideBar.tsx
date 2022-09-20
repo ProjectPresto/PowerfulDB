@@ -1,14 +1,14 @@
 import type { NextComponentType, NextPageContext } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { ReactElement, useEffect } from "react";
+import { ReactElement } from "react";
 
 import SearchInput from "./search/SearchInput";
-import logo from "../../public/images/logo.svg";
-import defaultPic from "../../public/images/default_profile_pic_dark.svg";
-import { useContributorContext } from "../../context/contributorProvider";
+import logo from "@public/images/logo.svg";
+import defaultPic from "@public/images/default_profile_pic_dark.svg";
+import { useContributorContext } from "@context/contributorProvider";
 
-interface Props { }
+interface Props {}
 
 const SideBar: NextComponentType<NextPageContext, {}, Props> = (props: Props) => {
   const { contributor, logout } = useContributorContext();

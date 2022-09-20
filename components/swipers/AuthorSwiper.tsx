@@ -2,10 +2,10 @@ import type { NextComponentType, NextPageContext } from "next";
 import { SwiperSlide } from "swiper/react";
 
 import SwiperContainer from "./SwiperContainer";
-import Artist from "../../models/artist";
-import Band from "../../models/band";
 import SwiperConfig from "./SwiperConfig";
-import AuthorCard from "../authors/AuthorCard";
+import AuthorCard from "@components/authors/AuthorCard";
+import Artist from "@models/artist";
+import Band from "@models/band";
 
 interface Props {
   authors: Artist[] | Band[];

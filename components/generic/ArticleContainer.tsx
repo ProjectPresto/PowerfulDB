@@ -2,11 +2,11 @@ import type { NextComponentType, NextPageContext } from "next";
 import Link from "next/link";
 import { useState } from "react";
 
-import { useContributorContext } from "../../context/contributorProvider";
-import { AlbumArticle } from "../../models/album";
-import { ArtistArticle } from "../../models/artist";
-import { BandArticle } from "../../models/band";
-import { TrackArticle } from "../../models/track";
+import { useContributorContext } from "@context/contributorProvider";
+import { AlbumArticle } from "@models/album";
+import { ArtistArticle } from "@models/artist";
+import { BandArticle } from "@models/band";
+import { TrackArticle } from "@models/track";
 
 interface Props {
   article: AlbumArticle | ArtistArticle | BandArticle | TrackArticle;

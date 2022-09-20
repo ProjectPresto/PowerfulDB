@@ -1,8 +1,8 @@
 import type { NextComponentType, NextPageContext } from "next";
 import Link from "next/link";
 
-import { SimplifiedTrack } from "../../../models/track";
-import { useContributorContext } from "../../../context/contributorProvider";
+import { SimplifiedTrack } from "@models/track";
+import { useContributorContext } from "@context/contributorProvider";
 
 interface Props {
   tracks: SimplifiedTrack[];

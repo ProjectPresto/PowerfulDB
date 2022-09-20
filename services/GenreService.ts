@@ -1,7 +1,7 @@
-import GenericService from "./GenericService";
-import Genre from "../models/genre";
-import { Pagination, UrlQueries } from "../models/generic";
 import HttpService from "./HttpService";
+import GenericService from "./GenericService";
+import Genre from "@models/genre";
+import { Pagination, UrlQueries } from "@models/generic";
 
 interface GetGenreListResponse extends Pagination {
   results: Genre[];

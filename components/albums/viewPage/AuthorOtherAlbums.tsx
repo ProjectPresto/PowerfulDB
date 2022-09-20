@@ -1,13 +1,13 @@
 import type { NextComponentType, NextPageContext } from "next";
-import Album from "../../../models/album";
-import AlbumSwiper from "../../swipers/AlbumSwiper";
+
+import AlbumSwiper from "@components/swipers/AlbumSwiper";
+import Album from "@models/album";
 
 interface Props {
   albums: Album[];
 }
 
 const AuthorOtherAlbums: NextComponentType<NextPageContext, {}, Props> = ({ albums }: Props) => {
-
   return (
     <div>
       <div className="flex items-center gap-2 md:gap-4">
@@ -16,7 +16,7 @@ const AuthorOtherAlbums: NextComponentType<NextPageContext, {}, Props> = ({ albu
       <hr className="section-hr" />
       <AlbumSwiper albums={albums} type={"narrow"} />
     </div>
-  )
-}
+  );
+};
 
-export default AuthorOtherAlbums
+export default AuthorOtherAlbums;

@@ -1,7 +1,7 @@
 import GenericService from "./GenericService";
-import Band from "../models/band";
-import { Pagination, UrlQueries } from "../models/generic";
 import { AlbumListResponse } from "./AlbumService";
+import Band from "@models/band";
+import { Pagination, UrlQueries } from "@models/generic";
 
 interface BandListResponse extends Pagination {
   results: Band[];

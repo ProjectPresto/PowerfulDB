@@ -1,10 +1,11 @@
-import moment from "moment";
 import type { NextComponentType, NextPageContext } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import Album from "../../../models/album";
+import moment from "moment";
 
-import defaultArtCover from "../../../public/images/no_image.jpg";
+import Album from "@models/album";
+
+import defaultArtCover from "@public/images/no_image.jpg";
 
 interface Props {
   album: Album;

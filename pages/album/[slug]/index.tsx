@@ -1,17 +1,17 @@
 import { GetServerSideProps } from "next";
 import { ReactElement, useEffect, useState } from "react";
 
-import { NextPageWithLayout } from "../../_app";
-import AlbumService from "../../../services/AlbumService";
-import Album, { AlbumArticle } from "../../../models/album";
-import MainLayout from "../../../components/layouts/MainLayout";
-import AlbumHero from "../../../components/albums/viewPage/AlbumHero";
+import { NextPageWithLayout } from "@pages/_app";
+import AlbumService from "@services/AlbumService";
+import Album from "@models/album";
+import MainLayout from "@components/layouts/MainLayout";
+import AlbumHero from "@components/albums/viewPage/AlbumHero";
 import Head from "next/head";
-import ArticleContainer from "../../../components/generic/ArticleContainer";
-import TracklistContainer from "../../../components/albums/viewPage/TracklistContainer";
-import ArtistService from "../../../services/ArtistService";
-import BandService from "../../../services/BandService";
-import AuthorOtherAlbums from "../../../components/albums/viewPage/AuthorOtherAlbums";
+import ArticleContainer from "@components/generic/ArticleContainer";
+import TracklistContainer from "@components/albums/viewPage/TracklistContainer";
+import ArtistService from "@services/ArtistService";
+import BandService from "@services/BandService";
+import AuthorOtherAlbums from "@components/albums/viewPage/AuthorOtherAlbums";
 
 interface AlbumView {
   album: Album;
@@ -19,11 +19,11 @@ interface AlbumView {
 }
 
 const AlbumView: NextPageWithLayout<AlbumView> = ({ album, authorAlbums }) => {
-  const [authorOtherAlbums, setAuthorOtherAlbums] = useState<Album[]>(authorAlbums.filter(authorAlbum => authorAlbum.id !== album.id));
+  const [authorOtherAlbums, setAuthorOtherAlbums] = useState<Album[]>(authorAlbums.filter((authorAlbum) => authorAlbum.id !== album.id));
 
   useEffect(() => {
-    setAuthorOtherAlbums(authorAlbums.filter(authorAlbum => authorAlbum.id !== album.id))
-  }, [album.id, authorAlbums])
+    setAuthorOtherAlbums(authorAlbums.filter((authorAlbum) => authorAlbum.id !== album.id));
+  }, [album.id, authorAlbums]);
 
   return (
     <>
@@ -57,7 +57,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   return {
     props: {
       album,
-      authorAlbums
+      authorAlbums,
     },
   };
 };

@@ -5,10 +5,10 @@ import { createContext, useContext } from "react";
 import jwtDecode from "jwt-decode";
 import { toast } from "react-toastify";
 
-import { Contributor } from "../models/user";
-import HttpService from "../services/HttpService";
-import UserService from "../services/UserService";
-import { Tokens } from "../models/generic";
+import HttpService from "@services/HttpService";
+import UserService from "@services/UserService";
+import { Contributor } from "@models/user";
+import { Tokens } from "@models/generic";
 
 interface ContributorContextType {
   contributor: Contributor | null;

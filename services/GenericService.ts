@@ -1,5 +1,5 @@
 import HttpService from "./HttpService";
-import { UrlQueries } from "../models/generic";
+import { UrlQueries } from "@models/generic";
 
 abstract class GenericClass {
   protected getUrl(path: string, urlQueries: UrlQueries) {

@@ -1,8 +1,8 @@
 import type { NextComponentType, NextPageContext } from "next";
 
-import Album from "../../../models/album";
-import Artist from "../../../models/artist";
-import Band from "../../../models/band";
+import Album from "@models/album";
+import Artist from "@models/artist";
+import Band from "@models/band";
 import ResultsAlbumList from "./resultsAlbumList";
 import ResultsAuthorList from "./resultsAuthorList";
 

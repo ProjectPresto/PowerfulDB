@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import { useContributorContext } from "../context/contributorProvider";
+import { useContributorContext } from "@context/contributorProvider";
 
 const Login: NextPage = () => {
   const [error, setError] = useState("");

@@ -1,11 +1,12 @@
 import type { NextComponentType, NextPageContext } from "next";
 import { useState, useEffect } from "react";
-import Artist from "../../../models/artist";
-import Band from "../../../models/band";
-import AlbumService from "../../../services/AlbumService";
-import ArtistService from "../../../services/ArtistService";
-import BandService from "../../../services/BandService";
-import Album from "../../../models/album";
+
+import AlbumService from "@services/AlbumService";
+import ArtistService from "@services/ArtistService";
+import BandService from "@services/BandService";
+import Artist from "@models/artist";
+import Band from "@models/band";
+import Album from "@models/album";
 import ResultsComponent from "./resultsComponent";
 
 const SearchInput: NextComponentType<NextPageContext, {}> = () => {
@@ -13,7 +14,7 @@ const SearchInput: NextComponentType<NextPageContext, {}> = () => {
   const [queryResults, setQueryResults] = useState<{ albums: Album[]; artists: Artist[]; bands: Band[] }>();
 
   const handleSubmit = () => {
-    // TODO: Search submit 
+    // TODO: Search submit
   };
 
   const search = async (q: string) => {

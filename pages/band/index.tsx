@@ -2,15 +2,15 @@ import { GetServerSideProps } from "next";
 import Head from "next/head";
 import { ReactElement } from "react";
 
-import { NextPageWithLayout } from "../_app";
-import BandService from "../../services/BandService";
-import Band from "../../models/band";
-import { Pagination, UrlQueries } from "../../models/generic";
-import MainLayout from "../../components/layouts/MainLayout";
-import AuthorCard from "../../components/authors/AuthorCard";
-import TitleComponent from "../../components/generic/TitleComponent";
-import PaginationComponent from "../../components/generic/PaginationComponent";
-import SelectFilterComponent from "../../components/generic/filters/SelectFilterComponent";
+import { NextPageWithLayout } from "@pages/_app";
+import BandService from "@services/BandService";
+import MainLayout from "@components/layouts/MainLayout";
+import AuthorCard from "@components/authors/AuthorCard";
+import TitleComponent from "@components/generic/TitleComponent";
+import PaginationComponent from "@components/generic/PaginationComponent";
+import SelectFilterComponent from "@components/generic/filters/SelectFilterComponent";
+import Band from "@models/band";
+import { Pagination, UrlQueries } from "@models/generic";
 
 interface BandIndex {
   bands: Band[];

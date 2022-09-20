@@ -2,9 +2,9 @@ import type { NextComponentType, NextPageContext } from "next";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import Select from "react-select";
-
 import { StylesConfig } from "react-select/dist/declarations/src";
-import { UrlQueries } from "../../../models/generic";
+
+import { UrlQueries } from "@models/generic";
 
 export interface Option {
   value: string;

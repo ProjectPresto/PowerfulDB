@@ -2,10 +2,10 @@ import type { NextComponentType, NextPageContext } from "next";
 import Image from "next/image";
 import Link from "next/link";
 
-import Artist from "../../models/artist";
-import Band from "../../models/band";
+import Artist from "@models/artist";
+import Band from "@models/band";
 
-import defaultBgImage from "../../public/images/no_image.jpg";
+import defaultBgImage from "@public/images/no_image.jpg";
 
 interface Props {
   author: Artist | Band;

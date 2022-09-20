@@ -1,6 +1,6 @@
 import GenericService from "./GenericService";
-import Album from "../models/album";
-import { Pagination, UrlQueries } from "../models/generic";
+import Album from "@models/album";
+import { Pagination, UrlQueries } from "@models/generic";
 
 export interface AlbumListResponse extends Pagination {
   results: Album[];

@@ -1,14 +1,14 @@
 import type { NextComponentType, NextPageContext } from "next";
 import { SwiperSlide } from "swiper/react";
 
-import Album from "../../models/album";
-import AlbumCard from "../albums/AlbumCard";
+import Album from "@models/album";
+import AlbumCard from "@components/albums/AlbumCard";
 import SwiperConfig from "./SwiperConfig";
 import SwiperContainer from "./SwiperContainer";
 
 interface Props {
   albums: Album[];
-  type?: "wide" | "narrow"
+  type?: "wide" | "narrow";
 }
 
 const AlbumSwiper: NextComponentType<NextPageContext, {}, Props> = ({ albums, type = "wide" }: Props) => {
@@ -19,7 +19,7 @@ const AlbumSwiper: NextComponentType<NextPageContext, {}, Props> = ({ albums, ty
     autoplay: {
       delay: 7500,
     },
-  }
+  };
 
   const narrowConfig: SwiperConfig = {
     breakpoints: {
@@ -48,7 +48,7 @@ const AlbumSwiper: NextComponentType<NextPageContext, {}, Props> = ({ albums, ty
         spaceBetween: 40,
       },
     },
-  }
+  };
 
   const wideConfig: SwiperConfig = {
     breakpoints: {
@@ -79,28 +79,26 @@ const AlbumSwiper: NextComponentType<NextPageContext, {}, Props> = ({ albums, ty
     },
   };
 
-  if (type === 'narrow') {
+  if (type === "narrow") {
     config = {
       ...config,
       ...narrowConfig,
-    }
+    };
   } else {
     config = {
       ...config,
       ...wideConfig,
-    }
+    };
   }
 
   return (
     <SwiperContainer config={config}>
-      {
-        albums.map((album) => (
-          <SwiperSlide key={album.id}>
-            <AlbumCard album={album} />
-          </SwiperSlide>
-        ))
-      }
-    </SwiperContainer >
+      {albums.map((album) => (
+        <SwiperSlide key={album.id}>
+          <AlbumCard album={album} />
+        </SwiperSlide>
+      ))}
+    </SwiperContainer>
   );
 };
 

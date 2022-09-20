@@ -3,7 +3,7 @@ import type { NextComponentType, NextPageContext } from "next";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
-import { Pagination } from "../../models/generic";
+import { Pagination } from "@models/generic";
 
 interface Props {
   pagination: Pagination;

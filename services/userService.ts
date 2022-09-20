@@ -1,8 +1,8 @@
-import { Pagination, Tokens } from "../models/generic";
-import { LoginUser } from "../models/user";
 import HttpService from "./HttpService";
-import { Contributor } from "../models/user";
 import GenericService from "./GenericService";
+import { Pagination } from "@models/generic";
+import { LoginUser } from "@models/user";
+import { Contributor } from "@models/user";
 
 interface ContributorListResponse extends Pagination {
   results: Contributor[];

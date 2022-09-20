@@ -1,20 +1,18 @@
 import type { GetServerSideProps } from "next";
 import Head from "next/head";
 import { ReactElement } from "react";
-import MainLayout from "../components/layouts/MainLayout";
 
-import { NextPageWithLayout } from "./_app";
-
-import Album from "../models/album";
-import Artist from "../models/artist";
-import Band from "../models/band";
-import AlbumService from "../services/AlbumService";
-import ArtistService from "../services/ArtistService";
-import BandService from "../services/BandService";
-
-import HomeHero from "../components/index/HomeHero";
-import AuthorSwiper from "./../components/swipers/AuthorSwiper";
-import AlbumSwiper from "./../components/swipers/AlbumSwiper";
+import { NextPageWithLayout } from "@pages/_app";
+import AlbumService from "@services/AlbumService";
+import ArtistService from "@services/ArtistService";
+import BandService from "@services/BandService";
+import HomeHero from "@components/index/HomeHero";
+import AuthorSwiper from "@components/swipers/AuthorSwiper";
+import AlbumSwiper from "@components/swipers/AlbumSwiper";
+import MainLayout from "@components/layouts/MainLayout";
+import Album from "@models/album";
+import Artist from "@models/artist";
+import Band from "@models/band";
 
 interface HomePage {
   albums: Album[];

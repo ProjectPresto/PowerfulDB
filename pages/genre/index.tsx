@@ -2,14 +2,14 @@ import { GetServerSideProps } from "next";
 import Head from "next/head";
 import { ReactElement } from "react";
 
-import { NextPageWithLayout } from "../_app";
-import MainLayout from "../../components/layouts/MainLayout";
-import { Pagination, UrlQueries } from "../../models/generic";
-import Genre from "../../models/genre";
-import GenreService from "../../services/GenreService";
-import TitleComponent from "../../components/generic/TitleComponent";
-import PaginationComponent from "../../components/generic/PaginationComponent";
-import GenreCard from "../../components/genres/GenreCard";
+import { NextPageWithLayout } from "@pages/_app";
+import GenreService from "@services/GenreService";
+import GenreCard from "@components/genres/GenreCard";
+import MainLayout from "@components/layouts/MainLayout";
+import TitleComponent from "@components/generic/TitleComponent";
+import PaginationComponent from "@components/generic/PaginationComponent";
+import Genre from "@models/genre";
+import { Pagination, UrlQueries } from "@models/generic";
 
 interface GenreIndex {
   genres: Genre[];
@@ -29,9 +29,7 @@ const GenreIndex: NextPageWithLayout<GenreIndex> = ({ genres, pagination }) => {
             // TODO: Genre name filter
           }
         </div>
-        <div
-          className="space-y-8 md:space-y-14"
-        >
+        <div className="space-y-8 md:space-y-14">
           {genres.map((genre) => (
             <GenreCard key={genre.id} genre={genre} />
           ))}
@@ -39,10 +37,10 @@ const GenreIndex: NextPageWithLayout<GenreIndex> = ({ genres, pagination }) => {
         <PaginationComponent pagination={pagination} />
       </div>
     </>
-  )
-}
+  );
+};
 
-export default GenreIndex
+export default GenreIndex;
 
 export const getServerSideProps: GetServerSideProps = async ({ query }: { query: UrlQueries }) => {
   const { object_count, page_count, next, previous, results: genres } = await GenreService.getGenreList({ ...query, size: 16 });

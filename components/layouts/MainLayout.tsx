@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import SideBar from "../sideBar/SideBar";
+import SideBar from "@components/sideBar/SideBar";
 import FooterContainer from "./FooterContainer";
 
 interface Props {

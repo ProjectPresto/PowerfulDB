@@ -1,8 +1,8 @@
 import type { NextComponentType, NextPageContext } from "next";
 import Image from "next/image";
 
-import logo from "../../public/images/logo.svg";
-import heroBg from "../../public/images/hero_bg.jpg";
+import logo from "@public/images/logo.svg";
+import heroBg from "@public/images/hero_bg.jpg";
 
 const HomeHero: NextComponentType<NextPageContext, {}> = () => {
   return (

@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import { useCallback, useEffect, useState } from "react";
 
 import AsyncSelect from "react-select/async";
-import GenreService from "../../../services/GenreService";
+import GenreService from "@services/GenreService";
 import { customSelectStyle, Option } from "./SelectFilterComponent";
 
 const GenreFilterComponent: NextComponentType<NextPageContext, {}> = () => {

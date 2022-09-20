@@ -1,7 +1,7 @@
 import GenericService from "./GenericService";
-import Artist from "../models/artist";
-import { Pagination, UrlQueries } from "../models/generic";
 import { AlbumListResponse } from "./AlbumService";
+import Artist from "@models/artist";
+import { Pagination, UrlQueries } from "@models/generic";
 
 interface ArtistListResponse extends Pagination {
   results: Artist[];

@@ -1,16 +1,34 @@
 import type { NextComponentType, NextPageContext } from "next";
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 import AsyncSelect from "react-select/async";
 import GenreService from "../../../services/GenreService";
 import { customSelectStyle, Option } from "./SelectFilterComponent";
 
-interface Props {}
-
-const GenreFilterComponent: NextComponentType<NextPageContext, {}, Props> = (props: Props) => {
+const GenreFilterComponent: NextComponentType<NextPageContext, {}> = () => {
   const router = useRouter();
-  const [selectValue, setSelectValue] = useState<object | object[] | null>();
+  const [selectValue, setSelectValue] = useState<Option | Option[] | null>();
+
+  // Get genres from url queries and insert them into select value
+  const initValue = useCallback(async () => {
+    let genresQueries = router.query.genres;
+    let initGenres = null;
+    if (genresQueries) {
+      const { results: genres } = await GenreService.getGenreList({
+        id__in: Array.isArray(genresQueries) ? genresQueries.join(",") : genresQueries,
+        size: 100,
+      });
+      initGenres = genres.map((genre) => {
+        return { value: genre.id.toString(), label: genre.name };
+      });
+    }
+    setSelectValue(initGenres);
+  }, [router.query.genres]);
+
+  useEffect(() => {
+    initValue();
+  }, [initValue]);
 
   const getGenres = (inputValue: string) =>
     new Promise<Option[]>((resolve) => {
@@ -40,7 +58,6 @@ const GenreFilterComponent: NextComponentType<NextPageContext, {}, Props> = (pro
       loadOptions={getGenres}
       onChange={handleChange}
       value={selectValue}
-      // defaultValue={defaultOption}
       styles={customSelectStyle}
       placeholder="Genre..."
       isMulti

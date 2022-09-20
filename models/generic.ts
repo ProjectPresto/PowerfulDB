@@ -18,6 +18,7 @@ export interface UrlQueries {
   genres?: [];
   artist?: number;
   band?: number;
+  id__in: string;
 }
 
 export interface Article {

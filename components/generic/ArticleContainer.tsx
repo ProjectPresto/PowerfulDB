@@ -16,6 +16,13 @@ const ArticleContainer: NextComponentType<NextPageContext, {}, Props> = ({ artic
   const { contributor } = useContributorContext();
   const [isArticleOpen, setIsArticleOpen] = useState<boolean>(false);
 
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: (document.getElementById("article-container")?.offsetTop || 0) - 60,
+      behavior: "smooth",
+    });
+  };
+
   return (
     <div className="relative" id="article-container">
       <div className="flex items-center gap-2 md:gap-4">
@@ -53,7 +60,10 @@ const ArticleContainer: NextComponentType<NextPageContext, {}, Props> = ({ artic
             id="read-more"
             className={`${!isArticleOpen ? "absolute bottom-0 pt-24" : "pt-4"} w-full flex items-end text-xl font-bold justify-center`}
             style={{ background: isArticleOpen ? "none" : "linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, #1B1C22 100%)" }}
-            onClick={() => setIsArticleOpen(!isArticleOpen)}
+            onClick={() => {
+              setIsArticleOpen(!isArticleOpen);
+              if (isArticleOpen) scrollToTop();
+            }}
           >
             {isArticleOpen ? "Close article" : "Read more"}
           </button>

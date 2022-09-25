@@ -19,7 +19,6 @@ const ArticleContainer: NextComponentType<NextPageContext, {}, Props> = ({ artic
   const scrollToTop = () => {
     window.scrollTo({
       top: (document.getElementById("article-container")?.offsetTop || 0) - 60,
-      behavior: "smooth",
     });
   };
 

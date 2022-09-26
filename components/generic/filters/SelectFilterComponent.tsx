@@ -13,7 +13,7 @@ export interface Option {
 
 interface Props {
   options: Option[];
-  filter: string;
+  filterUrl: string;
   label?: string;
   placeholder?: string;
   isMulti?: boolean;
@@ -22,20 +22,20 @@ interface Props {
 
 const SelectFilterComponent: NextComponentType<NextPageContext, {}, Props> = ({
   options,
-  filter,
+  filterUrl,
   label,
   placeholder,
   isMulti,
   isClearable,
 }: Props) => {
   const router = useRouter();
-  const defaultOption = options.find(({ value }) => value === router.query[filter]);
+  const defaultOption = options.find(({ value }) => value === router.query[filterUrl]);
   const [selectValue, setSelectValue] = useState<object | null>();
 
   const handleChange = (newValue: unknown) => {
     if (typeof newValue === "object") {
       setSelectValue(newValue);
-      router.query[filter] = (newValue as Option)?.value ?? null;
+      router.query[filterUrl] = (newValue as Option)?.value ?? null;
       router.replace({
         query: router.query,
       });
@@ -44,21 +44,21 @@ const SelectFilterComponent: NextComponentType<NextPageContext, {}, Props> = ({
     if (typeof newValue === "object" && !Array.isArray(newValue) && (newValue as Option)) {
       // If select single
       setSelectValue(newValue);
-      router.query[filter] = (newValue as Option).value;
+      router.query[filterUrl] = (newValue as Option).value;
       router.replace({
         query: router.query,
       });
     } else if (Array.isArray(newValue) && newValue.length > 0 && (newValue as Option[])) {
       // If select multi
       setSelectValue(newValue);
-      router.query[filter] = newValue.map((element) => element.value);
+      router.query[filterUrl] = newValue.map((element) => element.value);
       router.replace({
         query: router.query,
       });
     } else {
       // If cleared
       setSelectValue(null);
-      delete router.query[filter];
+      delete router.query[filterUrl];
       router.replace({
         query: router.query,
       });

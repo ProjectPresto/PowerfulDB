@@ -10,6 +10,7 @@ import TitleComponent from "@components/generic/TitleComponent";
 import PaginationComponent from "@components/generic/PaginationComponent";
 import Genre from "@models/genre";
 import { Pagination, UrlQueries } from "@models/generic";
+import TextFilterComponent from "@components/generic/filters/TextFilterComponent";
 
 interface GenreIndex {
   genres: Genre[];
@@ -25,9 +26,7 @@ const GenreIndex: NextPageWithLayout<GenreIndex> = ({ genres, pagination }) => {
       <div className="px-6 lg:px-14 py-8">
         <TitleComponent content="Genre list" />
         <div className="flex mb-10 gap-5">
-          {
-            // TODO: Genre name filter
-          }
+          <TextFilterComponent placeholder="Genre name..." filterUrl="name__icontains" />
         </div>
         <div className="space-y-8 md:space-y-14">
           {genres.map((genre) => (

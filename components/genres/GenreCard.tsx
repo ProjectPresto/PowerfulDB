@@ -24,13 +24,13 @@ const GenreCard: NextComponentType<NextPageContext, {}, Props> = ({ genre }: Pro
             </a>
           </Link>
 
-          <Link href={`/band?genres=${genre.id}`}>
+          <Link href={`/band?album__genres=${genre.id}`}>
             <a className={`transition-colors ${genre.band_count !== 0 ? "hover:text-primary-accent cursor-pointer" : "cursor-default"}`}>
               {genre.band_count} bands
             </a>
           </Link>
 
-          <Link href={`/artist?genres=${genre.id}`}>
+          <Link href={`/artist?album__genres=${genre.id}`}>
             <a className={`transition-colors ${genre.artist_count !== 0 ? "hover:text-primary-accent cursor-pointer" : "cursor-default"}`}>
               {genre.artist_count} artists
             </a>

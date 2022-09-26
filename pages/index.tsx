@@ -13,6 +13,7 @@ import MainLayout from "@components/layouts/MainLayout";
 import Album from "@models/album";
 import Artist from "@models/artist";
 import Band from "@models/band";
+import OnThisDayComponent from "@components/index/OnThisDayComponent";
 
 interface HomePage {
   albums: Album[];
@@ -30,7 +31,7 @@ const HomePage: NextPageWithLayout<HomePage> = ({ albums, artists, bands }) => {
       <>
         <HomeHero />
 
-        <div className="py-8 px-6 md:px-8 lg:px-12 flex flex-col gap-20">
+        <div className="pt-12 pb-24 px-6 md:px-8 lg:px-12 flex flex-col gap-20">
           <div className="w-full">
             <h2 className="font-sans text-2xl md:text-3xl">Popular artists</h2>
             <hr className="section-hr" />
@@ -47,6 +48,12 @@ const HomePage: NextPageWithLayout<HomePage> = ({ albums, artists, bands }) => {
             <h2 className="font-sans text-2xl md:text-3xl">Popular albums</h2>
             <hr className="section-hr" />
             <AlbumSwiper albums={albums} />
+          </div>
+
+          <div className="w-full">
+            <h2 className="font-sans text-2xl md:text-3xl">On this day...</h2>
+            <hr className="section-hr" />
+            <OnThisDayComponent />
           </div>
         </div>
       </>

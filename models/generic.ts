@@ -19,6 +19,12 @@ export interface UrlQueries {
   artist?: number;
   band?: number;
   id__in?: string;
+  release_date__day?: number;
+  release_date__month?: number;
+  birth_date__day?: number;
+  birth_date__month?: number;
+  death_date__day?: number;
+  death_date__month?: number;
 }
 
 export interface Article {

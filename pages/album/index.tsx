@@ -46,7 +46,7 @@ const AlbumIndex: NextPageWithLayout<AlbumIndex> = ({ albums, pagination }) => {
         <TitleComponent content="Album list" />
         <div className="flex mb-10 gap-5">
           <SelectFilterComponent options={sortOptions} filter="ordering" placeholder="Sort..." isClearable={true} />
-          <GenreFilterComponent />
+          <GenreFilterComponent filterUrl="genres" />
           <SelectFilterComponent options={typeOptions} filter="release_type" placeholder="Release type..." isClearable={true} />
         </div>
         <div

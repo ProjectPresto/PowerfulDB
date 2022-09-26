@@ -11,6 +11,7 @@ import PaginationComponent from "@components/generic/PaginationComponent";
 import SelectFilterComponent from "@components/generic/filters/SelectFilterComponent";
 import Artist from "@models/artist";
 import { Pagination, UrlQueries } from "@models/generic";
+import GenreFilterComponent from "@components/generic/filters/GenreFilterComponent";
 
 interface ArtistIndex {
   artists: Artist[];
@@ -32,8 +33,9 @@ const ArtistIndex: NextPageWithLayout<ArtistIndex> = ({ artists, pagination }) =
       </Head>
       <div className="px-6 lg:px-14 py-8">
         <TitleComponent content="Artist list" />
-        <div className="flex mb-10">
+        <div className="flex mb-10 gap-5">
           <SelectFilterComponent options={sortOptions} filter="ordering" placeholder="Sort..." isClearable={true} />
+          <GenreFilterComponent filterUrl="album__genres" />
         </div>
         <div
           className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 

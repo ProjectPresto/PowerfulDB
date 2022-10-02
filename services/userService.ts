@@ -1,6 +1,6 @@
 import HttpService from "./HttpService";
 import GenericService from "./GenericService";
-import { Pagination } from "@models/generic";
+import { Pagination, UrlQueries } from "@models/generic";
 import { LoginUser } from "@models/user";
 import { Contributor } from "@models/user";
 
@@ -11,6 +11,11 @@ interface ContributorListResponse extends Pagination {
 class UserService extends GenericService {
   async getJWT(user: LoginUser) {
     const { data } = await HttpService.http.post("/auth/jwt/create/", user);
+    return data;
+  }
+
+  async createContributor(userId: number) {
+    const { data }: { data: Contributor } = await HttpService.http.post(`/contributor/`, { user: userId });
     return data;
   }
 
@@ -25,9 +30,8 @@ class UserService extends GenericService {
     }
   }
 
-  async createContributor(userId: number) {
-    const { data }: { data: Contributor } = await HttpService.http.post(`/contributor/`, { user: userId });
-    return data;
+  async getContributorList(urlQueries: UrlQueries) {
+    return super.getList<ContributorListResponse>("contributor", urlQueries);
   }
 }
 

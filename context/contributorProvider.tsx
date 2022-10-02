@@ -1,7 +1,6 @@
 import type { NextComponentType, NextPageContext } from "next";
 import { useRouter } from "next/router";
-import { Dispatch, ReactNode, SetStateAction, useEffect, useState } from "react";
-import { createContext, useContext } from "react";
+import { createContext, Dispatch, ReactNode, SetStateAction, useContext, useEffect, useState } from "react";
 import jwtDecode from "jwt-decode";
 import { toast } from "react-toastify";
 
@@ -18,10 +17,7 @@ interface ContributorContextType {
 }
 
 const ContributorContextDefaultValues: ContributorContextType = {
-  contributor: null,
-  setContributor: null,
-  login: () => {},
-  logout: () => {},
+  contributor: null, setContributor: null, login: () => {}, logout: () => {}
 };
 
 const ContributorContext = createContext<ContributorContextType>(ContributorContextDefaultValues);
@@ -40,13 +36,13 @@ export const ContributorProvider: NextComponentType<NextPageContext, {}, Props> 
   const [contributor, setContributor] = useState<Contributor | null>(null);
 
   useEffect(() => {
-    getContributor();
+    getContributor().then(r => r);
   }, []);
 
   const getContributor = async () => {
     const tokensStr = localStorage.getItem("tokens");
     if (tokensStr !== null) {
-      const { access, refresh } = JSON.parse(tokensStr);
+      const { access } = JSON.parse(tokensStr);
 
       // Set header for future requests
       HttpService.setAuthHeader(access);
@@ -61,19 +57,17 @@ export const ContributorProvider: NextComponentType<NextPageContext, {}, Props> 
   const login = async (username: string, password: string, setError: Dispatch<SetStateAction<string>>) => {
     try {
       const data: Tokens = await toast.promise(UserService.getJWT({ username, password }), {
-        pending: "Logging in",
-        success: "Logged in",
-        error: "Error when logging in",
+        pending: "Logging in", success: "Logged in", error: "Error when logging in"
       });
 
       setError("");
       localStorage.setItem("tokens", JSON.stringify(data));
 
-      getContributor();
+      await getContributor();
 
-      router.push("/");
+      await router.push("/");
     } catch (err: any) {
-      setError(err.response.data.detail);
+      setError(err.response?.data?.detail);
     }
   };
 
@@ -85,15 +79,10 @@ export const ContributorProvider: NextComponentType<NextPageContext, {}, Props> 
   };
 
   const value = {
-    contributor,
-    setContributor,
-    login,
-    logout,
+    contributor, setContributor, login, logout
   };
 
-  return (
-    <>
-      <ContributorContext.Provider value={value}>{children}</ContributorContext.Provider>
-    </>
-  );
+  return (<>
+    <ContributorContext.Provider value={value}>{children}</ContributorContext.Provider>
+  </>);
 };

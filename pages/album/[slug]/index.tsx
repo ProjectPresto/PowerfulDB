@@ -43,7 +43,14 @@ const AlbumView: NextPageWithLayout<AlbumView> = ({ album, authorAlbums }) => {
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const slug = context.params?.slug;
 
-  const album = await AlbumService.getAlbum(slug as string);
+  let album;
+  try {
+    album = await AlbumService.getAlbum(slug as string);
+  } catch (ex) {
+    return {
+      notFound: true,
+    };
+  }
 
   let authorAlbums = null;
   if (album.artist) {

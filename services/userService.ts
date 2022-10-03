@@ -3,9 +3,10 @@ import GenericService from "./GenericService";
 import { Pagination, UrlQueries } from "@models/generic";
 import { LoginUser } from "@models/user";
 import { Contributor } from "@models/user";
+import { SimplifiedContributor } from "./../models/user";
 
 interface ContributorListResponse extends Pagination {
-  results: Contributor[];
+  results: SimplifiedContributor[];
 }
 
 class UserService extends GenericService {
@@ -15,14 +16,14 @@ class UserService extends GenericService {
   }
 
   async createContributor(userId: number) {
-    const { data }: { data: Contributor } = await HttpService.http.post(`/contributor/`, { user: userId });
+    const { data }: { data: SimplifiedContributor } = await HttpService.http.post(`/contributor/`, { user: userId });
     return data;
   }
 
   async getContributor(userId: number) {
     try {
-      const { data }: { data: ContributorListResponse } = await HttpService.http.get(`/contributor/?user=${userId}`);
-      return data.results[0];
+      const { data }: { data: Contributor } = await HttpService.http.get(`/contributor/${userId}/`);
+      return data;
     } catch (error: any) {
       if (error.response.status === 400) {
         return this.createContributor(userId);

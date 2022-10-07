@@ -7,6 +7,7 @@ import { Contributor } from "@models/user";
 import UserService from "@services/UserService";
 import MainLayout from "@components/layouts/MainLayout";
 import ViewContributorCard from "@components/users/viewPage/ViewContributorCard";
+import ContributionList from "@components/users/viewPage/ContributionList";
 
 interface ContributorView {
   contributor: Contributor;
@@ -25,6 +26,7 @@ const ContributorView: NextPageWithLayout<ContributorView> = ({ contributor }) =
       relative flex xl:flex-row flex-col gap-y-8 lg:gap-x-8 xl:gap-x-12 2xl:gap-x-16"
       >
         <ViewContributorCard contributor={contributor} />
+        <ContributionList contributor={contributor} />
       </div>
     </>
   );

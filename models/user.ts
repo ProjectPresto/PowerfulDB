@@ -30,11 +30,12 @@ export interface Contributor extends SimplifiedContributor {
       total: number;
       points: number;
     };
-    data: [ContributedAlbum, ContributedTrack, ContributedArtist, ContributedBand, ContributedGenre, ContributedBandMember];
+    data: [ContributedAlbum, ContributedTracks, ContributedArtist, ContributedBand, ContributedGenres, ContributedBandMember] | [];
   };
 }
 
-export interface ContributedData {
+interface ContributedData {
+  id: number;
   created_at: string;
 }
 
@@ -42,16 +43,16 @@ export interface ContributedAlbum extends ContributedData {
   type: "Album";
   title: string;
   slug: string;
+  release_type: "LP" | "Single" | "Compilation" | "EP" | "Live" | "Remix" | "Soundtrack" | "Other";
   artist__name?: string;
   artist__slug?: string;
   band__name?: string;
   band__slug?: string;
 }
 
-export interface ContributedTrack extends ContributedData {
+export interface ContributedTracks extends ContributedData {
   type: "Track";
-  title: string;
-  slug: string;
+  tracks_count: number;
   album__title: string;
   album__slug: string;
 }
@@ -68,10 +69,11 @@ export interface ContributedBand extends ContributedData {
   slug: string;
 }
 
-export interface ContributedGenre extends ContributedData {
+export interface ContributedGenres extends ContributedData {
   type: "Genre";
-  name: string;
-  slug: string;
+  album_genres__title: string;
+  album_genres__slug: string;
+  genres_count: number;
 }
 
 export interface ContributedBandMember extends ContributedData {

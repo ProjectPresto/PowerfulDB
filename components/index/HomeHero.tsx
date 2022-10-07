@@ -14,7 +14,7 @@ const HomeHero: NextComponentType<NextPageContext, {}> = () => {
         <div className="px-4 w-48 md:w-96 lg:w-[32rem] xl:w-[40rem] 2xl:w-[50rem]">
           <Image src={logo} alt="App logo" layout="responsive" />
         </div>
-        <p className="font-serif text-main-light px-4 text-sm md:text-lg lg:text-xl">Powerful Database of Music Information</p>
+        <p className="font-serif text-primary-light px-4 text-sm md:text-lg lg:text-xl">Powerful Database of Music Information</p>
       </div>
     </div>
   );

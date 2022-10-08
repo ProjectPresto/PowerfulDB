@@ -8,16 +8,20 @@ import HttpService from "@services/HttpService";
 import UserService from "@services/UserService";
 import { Contributor } from "@models/user";
 import { Tokens } from "@models/generic";
+import { SimplifiedContributor } from "./../models/user";
 
 interface ContributorContextType {
-  contributor: Contributor | null;
-  setContributor: Dispatch<SetStateAction<Contributor | null>> | null;
-  login: (username: string, password: string, setError: Dispatch<SetStateAction<string>>) => void;
+  contributor: SimplifiedContributor | null;
+  setContributor: Dispatch<SetStateAction<SimplifiedContributor | null>> | null;
+  login: (username: string, password: string, setError: Dispatch<SetStateAction<string>>) => boolean | Promise<boolean>;
   logout: () => void;
 }
 
 const ContributorContextDefaultValues: ContributorContextType = {
-  contributor: null, setContributor: null, login: () => {}, logout: () => {}
+  contributor: null,
+  setContributor: null,
+  login: () => false,
+  logout: () => {},
 };
 
 const ContributorContext = createContext<ContributorContextType>(ContributorContextDefaultValues);
@@ -33,10 +37,10 @@ interface Props {
 
 export const ContributorProvider: NextComponentType<NextPageContext, {}, Props> = ({ children }: Props) => {
   const router = useRouter();
-  const [contributor, setContributor] = useState<Contributor | null>(null);
+  const [contributor, setContributor] = useState<SimplifiedContributor | null>(null);
 
   useEffect(() => {
-    getContributor().then(r => r);
+    getContributor().then((r) => r);
   }, []);
 
   const getContributor = async () => {
@@ -57,17 +61,19 @@ export const ContributorProvider: NextComponentType<NextPageContext, {}, Props> 
   const login = async (username: string, password: string, setError: Dispatch<SetStateAction<string>>) => {
     try {
       const data: Tokens = await toast.promise(UserService.getJWT({ username, password }), {
-        pending: "Logging in", success: "Logged in", error: "Error when logging in"
+        pending: "Logging in",
+        success: "Logged in",
+        error: "Error when logging in",
       });
 
       setError("");
       localStorage.setItem("tokens", JSON.stringify(data));
 
       await getContributor();
-
-      await router.push("/");
+      return true;
     } catch (err: any) {
       setError(err.response?.data?.detail);
+      return false;
     }
   };
 
@@ -79,10 +85,15 @@ export const ContributorProvider: NextComponentType<NextPageContext, {}, Props> 
   };
 
   const value = {
-    contributor, setContributor, login, logout
+    contributor,
+    setContributor,
+    login,
+    logout,
   };
 
-  return (<>
-    <ContributorContext.Provider value={value}>{children}</ContributorContext.Provider>
-  </>);
+  return (
+    <>
+      <ContributorContext.Provider value={value}>{children}</ContributorContext.Provider>
+    </>
+  );
 };

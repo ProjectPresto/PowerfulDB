@@ -1,12 +1,15 @@
-import type { NextPage } from "next";
-import Head from "next/head";
+import type { NextComponentType, NextPageContext } from "next";
 import Link from "next/link";
-import { useState } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { useContributorContext } from "@context/contributorProvider";
 
-const Login: NextPage = () => {
+interface Props {
+  handleShowLogin: Dispatch<SetStateAction<boolean>>;
+}
+
+const Login: NextComponentType<NextPageContext, {}, Props> = ({ handleShowLogin }: Props) => {
   const [error, setError] = useState("");
   const { login } = useContributorContext();
 
@@ -20,16 +23,16 @@ const Login: NextPage = () => {
       password: Yup.string().required().max(128).min(5),
     }),
     onSubmit: async ({ username, password }) => {
-      login(username, password, setError);
+      const isLoggedIn = await login(username, password, setError);
+      if (isLoggedIn) {
+        handleShowLogin(false);
+      }
     },
   });
 
   return (
     <>
-      <Head>
-        <title>Login | PowerfulDB</title>
-      </Head>
-      <div className="flex justify-center items-center h-screen w-screen">
+      <div className="flex justify-center items-center h-screen w-screen z-[60] bg-secondary-dark/50 backdrop-blur-sm fixed inset-0">
         <div className="px-6 md:px-10 lg:px-14 py-6 md:py-10 bg-primary-dark rounded-3xl max-w-lg m-4">
           <h1 className="font-sans text-2xl md:text-3xl mb-1">Login</h1>
 
@@ -87,6 +90,13 @@ const Login: NextPage = () => {
               </button>
             </div>
           </form>
+
+          <button
+            className="material-symbols-outlined absolute top-12 md:top-8 mx-auto md:mx-0 left-0 md:left-auto right-0 md:right-16 md:!text-3xl bg-primary-accent rounded-full w-10 md:w-12 text-primary-dark !aspect-square"
+            onClick={() => handleShowLogin(false)}
+          >
+            close
+          </button>
         </div>
       </div>
     </>

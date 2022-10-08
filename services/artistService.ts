@@ -12,6 +12,10 @@ class ArtistService extends GenericService {
     return super.getList<ArtistListResponse>("artist", urlQueries);
   }
 
+  async getArtist(slug: string) {
+    return super.getItem<Artist>("artist", slug);
+  }
+
   async getArtistAlbumList(artist_id: number, UrlQueries?: UrlQueries) {
     return super.getList<AlbumListResponse>("album", { artist: artist_id, ...UrlQueries });
   }

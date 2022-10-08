@@ -12,6 +12,10 @@ class BandService extends GenericService {
     return super.getList<BandListResponse>("band", urlQueries);
   }
 
+  async getBand(slug: string) {
+    return super.getItem<Band>("band", slug);
+  }
+
   async getBandAlbumList(band_id: number, UrlQueries?: UrlQueries) {
     return super.getList<AlbumListResponse>("album", { band: band_id, ...UrlQueries });
   }

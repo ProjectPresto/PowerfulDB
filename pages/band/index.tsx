@@ -9,12 +9,12 @@ import AuthorCard from "@components/authors/AuthorCard";
 import TitleComponent from "@components/generic/TitleComponent";
 import PaginationComponent from "@components/generic/PaginationComponent";
 import SelectFilterComponent from "@components/generic/filters/SelectFilterComponent";
-import Band from "@models/band";
+import { SimplifiedBand } from "@models/band";
 import { Pagination, UrlQueries } from "@models/generic";
 import GenreFilterComponent from "@components/generic/filters/GenreFilterComponent";
 
 interface BandIndex {
-  bands: Band[];
+  bands: SimplifiedBand[];
   pagination: Pagination;
 }
 

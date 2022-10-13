@@ -9,12 +9,12 @@ import AuthorCard from "@components/authors/AuthorCard";
 import TitleComponent from "@components/generic/TitleComponent";
 import PaginationComponent from "@components/generic/PaginationComponent";
 import SelectFilterComponent from "@components/generic/filters/SelectFilterComponent";
-import Artist from "@models/artist";
+import { SimplifiedArtist } from "@models/artist";
 import { Pagination, UrlQueries } from "@models/generic";
 import GenreFilterComponent from "@components/generic/filters/GenreFilterComponent";
 
 interface ArtistIndex {
-  artists: Artist[];
+  artists: SimplifiedArtist[];
   pagination: Pagination;
 }
 

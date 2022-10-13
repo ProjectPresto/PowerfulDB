@@ -2,13 +2,13 @@ import type { NextComponentType, NextPageContext } from "next";
 import Image from "next/image";
 import Link from "next/link";
 
-import Artist from "@models/artist";
-import Band from "@models/band";
+import { SimplifiedArtist } from "@models/artist";
+import { SimplifiedBand } from "@models/band";
 
 import defaultBgImage from "@public/images/no_image.jpg";
 
 interface Props {
-  author: Artist | Band;
+  author: SimplifiedArtist | SimplifiedBand;
   authorType: "artist" | "band";
 }
 

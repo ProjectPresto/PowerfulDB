@@ -3,6 +3,7 @@ import Link from 'next/link';
 
 import { SimplifiedTrack } from '@models/track';
 import { useContributorContext } from '@context/contributorProvider';
+import { useShowLoginContext } from '@context/showLoginProvider';
 
 interface Props {
 	tracks: SimplifiedTrack[];
@@ -11,6 +12,7 @@ interface Props {
 
 const TracklistContainer: NextComponentType<NextPageContext, {}, Props> = ({ tracks, fullDuration }: Props) => {
 	const { contributor } = useContributorContext();
+	const { toggleLoginComponent } = useShowLoginContext();
 
 	const getFullLength = () => {
 		if (fullDuration) {
@@ -75,15 +77,15 @@ const TracklistContainer: NextComponentType<NextPageContext, {}, Props> = ({ tra
 				</div>
 			) : (
 				<p className="text-sm md:text-base">
-					Album has no tracklist yet.
+					Album has no tracklist yet.{' '}
 					{contributor ? (
 						<Link href={'create-tracklist'}>
 							<a className="hover:underline text-primary-accent">You can go ahead and create it</a>
 						</Link>
 					) : (
-						<Link href="/login">
+						<button onClick={() => toggleLoginComponent()}>
 							<a className="hover:underline text-primary-accent">Log in to add it.</a>
-						</Link>
+						</button>
 					)}
 				</p>
 			)}

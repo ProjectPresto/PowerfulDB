@@ -9,6 +9,7 @@ import BandService from '@services/BandService';
 import AuthorHero from '@components/authors/viewPage/AuthorHero';
 import ArticleContainer from '@components/generic/ArticleContainer';
 import AuthorAlbums from '@components/authors/viewPage/AuthorAlbums';
+import BandMembersList from '@components/authors/viewPage/BandMembersList';
 
 
 interface BandView {
@@ -23,8 +24,9 @@ const BandView: NextPageWithLayout<BandView> = ({ band }) => {
 			</Head>
 			<AuthorHero band={band}/>
 			<div className="flex flex-col gap-12 md:gap-16 px-5 md:px-10 lg:px-14 py-8 mx-auto max-w-screen-lg w-full">
-				<ArticleContainer article={band.article}/>
+				<ArticleContainer article={band?.article}/>
 				<AuthorAlbums band={band}/>
+				<BandMembersList band={band}/>
 			</div>
 		</>
 	);

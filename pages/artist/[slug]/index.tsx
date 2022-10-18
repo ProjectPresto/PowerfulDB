@@ -9,6 +9,7 @@ import MainLayout from '@components/layouts/MainLayout';
 import ArtistService from '@services/ArtistService';
 import ArticleContainer from '@components/generic/ArticleContainer';
 import AuthorAlbums from '@components/authors/viewPage/AuthorAlbums';
+import ArtistMembershipsList from '@components/authors/viewPage/ArtistMembershipsList';
 
 interface ArtistView {
 	artist: Artist;
@@ -24,6 +25,7 @@ const ArtistView: NextPageWithLayout<ArtistView> = ({ artist }) => {
 			<div className="flex flex-col gap-12 md:gap-16 px-5 md:px-10 lg:px-14 py-8 mx-auto max-w-screen-lg w-full">
 				<ArticleContainer article={artist.article}/>
 				<AuthorAlbums artist={artist}/>
+				<ArtistMembershipsList artist={artist}/>
 			</div>
 		</>
 	);

@@ -25,8 +25,9 @@ const BandMemberCard: NextComponentType<NextPageContext, {}, Props> = ({ member 
 						<Image
 							src={member.artist.bg_image || member.artist.bg_image_url || defaultArtCover}
 							alt={`${member.artist.name} background image`}
-							layout="fill"
-							className="aspect-square object-cover object-center rounded-full"
+							width={500}
+							height={500}
+							className="aspect-square object-cover object-center rounded-full h-full w-full"
 						/>
 					</div>
 				</Link>
@@ -34,11 +35,10 @@ const BandMemberCard: NextComponentType<NextPageContext, {}, Props> = ({ member 
 			<div className="ml-4 md:ml-8 lg:ml-10">
 				<div className="flex flex-col md:flex-row items-start md:items-center gap-0 md:gap-2">
 					{member.name && <h2 className="text-lg md:text-xl lg:text-2xl">{member.name}</h2>}
-					{member.artist && <Link href={`/artist/${member.artist.slug}`}>
-            <a className="text-lg md:text-xl lg:text-2xl hover:text-primary-accent transition-colors">
+					{member.artist &&
+            <Link href={`/artist/${member.artist.slug}`} className="text-lg md:text-xl lg:text-2xl hover:text-primary-accent transition-colors">
 							{member.artist.name}
-            </a>
-          </Link>}
+            </Link>}
 					{member.join_year && (
 						<>
 							<p className="mb-1 text-gray-600 hidden md:block">|</p>

@@ -34,11 +34,9 @@ const SideBar: NextComponentType<NextPageContext, {}> = () => {
 		if (auth && !contributor) return null;
 		return (
 			<div key={label}>
-				<Link href={url}>
-					<a className="flex items-center gap-4 text-primary-light hover:text-primary-accent transition-colors">
-						<span className="material-symbols-rounded !text-2xl xl:!text-3xl">{icon}</span>
-						<div className="text-base xl:text-lg">{label}</div>
-					</a>
+				<Link href={url} className="flex items-center gap-4 text-primary-light hover:text-primary-accent transition-colors">
+					<span className="material-symbols-rounded !text-2xl xl:!text-3xl">{icon}</span>
+					<div className="text-base xl:text-lg">{label}</div>
 				</Link>
 			</div>
 		);
@@ -52,9 +50,7 @@ const SideBar: NextComponentType<NextPageContext, {}> = () => {
 			>
 				<div className="w-full md:flex items-center justify-center hidden">
 					<Link href="/">
-						<a>
-							<Image src={logo} alt="Logo"/>
-						</a>
+						<Image src={logo} alt="Logo"/>
 					</Link>
 				</div>
 
@@ -80,28 +76,25 @@ const SideBar: NextComponentType<NextPageContext, {}> = () => {
 						<div className="flex justify-between">
 							<div className="flex items-center gap-4 truncate">
 								<Link href={`/user/${contributor.user}`}>
-									<a>
-										<div className="block h-6 lg:h-8 aspect-square">
-											<Image
-												src={contributor.profile_picture ?? defaultPic}
-												alt="User profile picture"
-												height="32px"
-												width="32px"
-												layout="responsive"
-												className="object-cover object-center rounded-full"
-											/>
-										</div>
-									</a>
+									<div className="block h-6 lg:h-8 aspect-square">
+										<Image
+											src={contributor.profile_picture ?? defaultPic}
+											alt="User profile picture"
+											width={100}
+											height={100}
+											className="object-cover object-center rounded-full"
+										/>
+									</div>
 								</Link>
 								<div className="truncate pr-6">
-									<Link href={`/user/${contributor.user}`}>
-										<a className="block font-bold truncate lg:text-xl">{contributor.username}</a>
+									<Link href={`/user/${contributor.user}`} className="block font-bold truncate lg:text-xl">
+										{contributor.username}
 									</Link>
 								</div>
 							</div>
 							<div>
-								<button type="button" onClick={logout}>
-									<a className="material-symbols-outlined text-secondary-dark font-normal !text-lg lg:!text-2xl">logout</a>
+								<button type="button" onClick={logout} className="material-symbols-outlined text-secondary-dark font-normal !text-lg lg:!text-2xl">
+									logout
 								</button>
 							</div>
 						</div>

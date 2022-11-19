@@ -28,8 +28,9 @@ const ArtistMembershipsList: NextComponentType<NextPageContext, {}, Props> = ({ 
 								<Image
 									src={membership.band.bg_image || membership.band.bg_image_url || defaultBgImage}
 									alt={`${membership.band.name} background image`}
-									layout="fill"
-									className="object-center object-cover"
+									width={500}
+									height={500}
+									className="object-center object-cover h-full w-full"
 								/>
 							</div>
 

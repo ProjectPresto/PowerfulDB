@@ -76,8 +76,8 @@ const Login: NextComponentType<NextPageContext, {}> = () => {
 					<div className="text-gray-400 flex flex-col gap-1 text-xs sm:text-sm md:text-base">
 						<p className="text-primary-light">
 							If you don&apos;t have an account{' '}
-							<Link href="/signup">
-								<a className="text-primary-accent hover:underline">create it here</a>
+							<Link href="/signup" className="text-primary-accent hover:underline">
+								create it here
 							</Link>
 						</p>
 					</div>

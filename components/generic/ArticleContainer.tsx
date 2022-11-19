@@ -49,7 +49,7 @@ const ArticleContainer: NextComponentType<NextPageContext, {}, Props> = ({ artic
 								Source:{' '}
 								{article.source_url ? (
 									<Link href={article.source_url} target="_blank">
-										<a>{article.source}</a>
+										{article.source}
 									</Link>
 								) : (
 									article.source
@@ -75,12 +75,12 @@ const ArticleContainer: NextComponentType<NextPageContext, {}, Props> = ({ artic
 					<p>
 						There is no article for this album yet.{' '}
 						{contributor ? (
-							<Link href={'create-article-linkkkkkkkkkkkkkkkk'}>
-								<a className="hover:underline text-primary-accent">You can go ahead and create it</a>
+							<Link href={'create-article-linkkkkkkkkkkkkkkkk'} className="hover:underline text-primary-accent">
+								You can go ahead and create it
 							</Link>
 						) : (
-							<button onClick={() => toggleLoginComponent()}>
-								<a className="hover:underline text-primary-accent">Log in to add it.</a>
+							<button onClick={() => toggleLoginComponent()} className="hover:underline text-primary-accent">
+								Log in to add it.
 							</button>
 						)}
 					</p>

@@ -53,14 +53,24 @@ const AlbumIndex: NextPageWithLayout<AlbumIndex> = ({ albums, pagination }) => {
 				<title>Album List | PowerfulDB</title>
 			</Head>
 			<div className="px-6 lg:px-14 py-8">
-				<TitleComponent content="Album list"/>
+				<TitleComponent content="Album list" url="/album/create"/>
 				<div className="flex justify-between">
 					<div className="flex mb-10 gap-5">
-						<SelectFilterComponent instanceId="album-sort-select" options={sortOptions} filterUrl="ordering" placeholder="Sort..."
-						                       isClearable={true}/>
+						<SelectFilterComponent
+							instanceId="album-sort-select"
+							options={sortOptions}
+							filterUrl="ordering"
+							placeholder="Sort..."
+							isClearable={true}
+						/>
 						<GenreFilterComponent instanceId="album-genre-select" filterUrl="genres"/>
-						<SelectFilterComponent instanceId="album-release-type-select" options={typeOptions} filterUrl="release_type" placeholder="Release type..."
-						                       isClearable={true}/>
+						<SelectFilterComponent
+							instanceId="album-release-type-select"
+							options={typeOptions}
+							filterUrl="release_type"
+							placeholder="Release type..."
+							isClearable={true}
+						/>
 					</div>
 					<SelectFilterComponent instanceId="album-page-size-select" options={pageSizeOptions} filterUrl="size" placeholder="Page size..."
 					                       isClearable={true}/>

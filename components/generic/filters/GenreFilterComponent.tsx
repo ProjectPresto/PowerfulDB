@@ -41,7 +41,8 @@ const GenreFilterComponent: NextComponentType<NextPageContext, {}, Props> = ({ i
 	const handleChange = (newValue: unknown) => {
 		if (Array.isArray(newValue) && newValue.length > 0 && (
 			newValue as Option[]
-		)) {
+		))
+		{
 			setSelectValue(newValue);
 			router.query[filterUrl] = newValue.map((genre) => genre.value);
 			router.replace({
@@ -49,9 +50,9 @@ const GenreFilterComponent: NextComponentType<NextPageContext, {}, Props> = ({ i
 			});
 		} else {
 			setSelectValue(null);
-			const { genres, album__genres, ...remainingQuries } = router.query;
+			const { genres, album__genres, ...remainingQueries } = router.query;
 			router.replace({
-				query: remainingQuries
+				query: remainingQueries
 			});
 		}
 	};

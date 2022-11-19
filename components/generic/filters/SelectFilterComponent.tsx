@@ -30,7 +30,8 @@ const SelectFilterComponent: NextComponentType<NextPageContext, {}, Props> = ({
 	const handleChange = (newValue: unknown) => {
 		if (typeof newValue === 'object' && !Array.isArray(newValue) && (
 			newValue as Option
-		)) {
+		))
+		{
 			// If select single
 			setSelectValue(newValue);
 			router.query[filterUrl] = (
@@ -41,7 +42,8 @@ const SelectFilterComponent: NextComponentType<NextPageContext, {}, Props> = ({
 			});
 		} else if (Array.isArray(newValue) && newValue.length > 0 && (
 			newValue as Option[]
-		)) {
+		))
+		{
 			// If select multi
 			setSelectValue(newValue);
 			router.query[filterUrl] = newValue.map((element) => element.value);
@@ -78,37 +80,49 @@ const SelectFilterComponent: NextComponentType<NextPageContext, {}, Props> = ({
 };
 
 export const customSelectStyle: StylesConfig = {
-	control: (provider, state) => (
+	control: (provider) => (
 		{
 			...provider, borderRadius: '1.5rem', width: 'auto', backgroundColor: '#1B1C22', padding: '0 0.3rem', border: 0, boxShadow: 'none'
 		}
 	),
 
-	container: (provider, state) => (
+	placeholder: (provider) => (
 		{
-			...provider, borderRadius: '1.5rem', border: '2px solid #4EFFA6', zIndex: 1000
+			...provider, color: '#6b7280'
 		}
 	),
 
-	input: (provider, state) => (
+	container: (provider) => (
+		{
+			...provider, borderRadius: '1.5rem', border: '2px solid #4EFFA6', color: '#F3EFF5'
+		}
+	),
+
+	input: (provider) => (
 		{
 			...provider, color: '#F3EFF5'
 		}
 	),
 
-	singleValue: (provider, state) => (
+	valueContainer: (provider) => (
+		{
+			...provider, padding: '0 0.5rem'
+		}
+	),
+
+	singleValue: (provider) => (
 		{
 			...provider, color: '#F3EFF5'
 		}
 	),
 
-	menuList: (provider, state) => (
+	menuList: (provider) => (
 		{
-			...provider, padding: 0, '&::-webkit-scrollbar': {
+			...provider, padding: 0,
+
+			'&::-webkit-scrollbar': {
 				width: '0.5rem'
-			},
-
-			'&::-webkit-scrollbar-track': {
+			}, '&::-webkit-scrollbar-track': {
 				boxShadow: 'inset 0 0 5px rgba(255, 255, 255, 0.1)', borderRadius: '10px'
 			}, '&::-webkit-scrollbar-thumb': {
 				background: 'rgba(78, 255, 166, 0.75)', borderRadius: '10px'
@@ -118,7 +132,7 @@ export const customSelectStyle: StylesConfig = {
 		}
 	),
 
-	menu: (provided, state) => (
+	menu: (provided) => (
 		{
 			...provided, minWidth: 50, borderRadius: '0.5rem', backgroundColor: '#292A33', overflow: 'hidden'
 		}
@@ -136,13 +150,13 @@ export const customSelectStyle: StylesConfig = {
 		}
 	),
 
-	multiValue: (provider, state) => (
+	multiValue: (provider) => (
 		{
 			...provider, backgroundColor: '#4EFFA6', fontWeight: 'bold', fontSize: '14px', borderRadius: '1rem', paddingLeft: '0.2rem', overflow: 'hidden'
 		}
 	),
 
-	multiValueRemove: (provider, state) => (
+	multiValueRemove: (provider) => (
 		{
 			...provider, color: '#1B1C22', transition: '.1s all ease-in-out', borderRadius: '1rem'
 		}

@@ -19,16 +19,16 @@ const FooterContainer: NextComponentType<NextPageContext, {}> = () => {
 
 				<div className="flex gap-4 md:gap-8 sm:text-sm md:text-base lg:text-lg font-bold items-center">
 					<Link href="/album">
-						<a>Albums</a>
+						Albums
 					</Link>
 					<Link href="/band">
-						<a>Bands</a>
+						Bands
 					</Link>
 					<Link href="/artist">
-						<a>Artists</a>
+						Artists
 					</Link>
 					<Link href="/user">
-						<a>Users</a>
+						Users
 					</Link>
 				</div>
 			</div>

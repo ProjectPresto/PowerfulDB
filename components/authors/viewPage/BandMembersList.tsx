@@ -50,12 +50,12 @@ const BandMembersList: NextComponentType<NextPageContext, {}, Props> = ({ band }
 			</> : <div className="article-style text-justify">
 				<p>This band has no added members.{' '}
 					{contributor ? (
-						<Link href={'create-band-member-link'}>
-							<a className="hover:underline text-primary-accent">You can go ahead and add them</a>
+						<Link href={'create-band-member-link'} className="hover:underline text-primary-accent">
+							You can go ahead and add them
 						</Link>
 					) : (
-						<button onClick={() => toggleLoginComponent()}>
-							<a className="hover:underline text-primary-accent">Log in to add them.</a>
+						<button onClick={() => toggleLoginComponent()} className="hover:underline text-primary-accent">
+							Log in to add them.
 						</button>
 					)}
 				</p>

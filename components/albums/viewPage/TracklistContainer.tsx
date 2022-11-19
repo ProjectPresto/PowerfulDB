@@ -54,8 +54,10 @@ const TracklistContainer: NextComponentType<NextPageContext, {}, Props> = ({ tra
 											{track.featured_authors
 												.map<React.ReactNode>((fa) => (
 													<Link key={`${track.id}${fa.artist?.id || fa.band?.id}`}
-													      href={`/${fa.artist ? 'artist' : 'band'}/${fa.artist?.slug || fa.band?.slug}`}>
-														<a className="hover:underline">{fa.artist?.name || fa.band?.name}</a>
+													      href={`/${fa.artist ? 'artist' : 'band'}/${fa.artist?.slug || fa.band?.slug}`}
+													      className="hover:underline"
+													>
+														{fa.artist?.name || fa.band?.name}
 													</Link>
 												))
 												.reduce((prev, curr) => [prev, ', ', curr])}
@@ -79,12 +81,12 @@ const TracklistContainer: NextComponentType<NextPageContext, {}, Props> = ({ tra
 				<p className="text-sm md:text-base">
 					Album has no tracklist yet.{' '}
 					{contributor ? (
-						<Link href={'create-tracklist'}>
-							<a className="hover:underline text-primary-accent">You can go ahead and create it</a>
+						<Link href={'create-tracklist'} className="hover:underline text-primary-accent">
+							You can go ahead and create it
 						</Link>
 					) : (
-						<button onClick={() => toggleLoginComponent()}>
-							<a className="hover:underline text-primary-accent">Log in to add it.</a>
+						<button onClick={() => toggleLoginComponent()} className="hover:underline text-primary-accent">
+							Log in to add it.
 						</button>
 					)}
 				</p>

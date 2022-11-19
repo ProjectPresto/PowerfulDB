@@ -16,12 +16,13 @@ const AlbumsGrid: NextComponentType<NextPageContext, {}, Props> = ({ albums }: P
 		<div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 gap-x-4 lg:gap-x-6 xl:gap-x-8 gap-y-6 md:gap-y-12">
 			{albums.map(album => <Link key={album.id} href={`/album/${album.slug}`}>
 				<div className="group">
-					<div className="relative group-hover:scale-95 transition-transform shadow-lg ease-in-out block aspect-square cursor-pointer">
+					<div className="relative group-hover:scale-95 transition-transform shadow-lg ease-in-out block cursor-pointer">
 						<Image
 							src={album.art_cover || album.art_cover_url || defaultArtCover}
 							alt={`${album.title} art cover`}
-							layout="fill"
-							className="object-cover object-center"
+							width={400}
+							height={400}
+							className="object-cover object-center aspect-square w-full h-full"
 						/>
 					</div>
 

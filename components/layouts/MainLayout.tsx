@@ -11,7 +11,7 @@ interface Props {
 const MainLayout = ({ children }: Props) => {
 	const { showLogin } = useShowLoginContext();
 	return (
-		<div className="flex">
+		<div className="flex lora.className">
 			<SideBar/>
 			<section
 				className="md:pl-56 lg:pl-60 xl:pl-72 w-full

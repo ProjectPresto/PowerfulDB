@@ -60,6 +60,7 @@ const AuthorSelect: NextComponentType<NextPageContext, {}, Props> = ({ formik }:
 			placeholder="Iron Maiden"
 			loadOptions={getAuthorsOptions}
 			onChange={(v: unknown) => typeof v === 'object' && formik.setFieldValue('author', v)}
+			onBlur={formik.handleBlur}
 			value={formik.values.author}
 			// @ts-ignore ez fix
 			styles={selectStyle}

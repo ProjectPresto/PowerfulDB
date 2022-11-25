@@ -44,8 +44,8 @@ const TracklistContainer: NextComponentType<NextPageContext, {}, Props> = ({ tra
 			{tracks.length !== 0 ? (
 				<div>
 					{tracks.map((track) => (
-						<>
-							<div key={track.id} className="flex justify-between text-sm md:text-base gap-4 items-center">
+						<div key={track.id}>
+							<div className="flex justify-between text-sm md:text-base gap-4 items-center">
 								<p>
 									{track.position}. <b>{track.title}</b>
 									{track.featured_authors.length !== 0 && (
@@ -71,7 +71,7 @@ const TracklistContainer: NextComponentType<NextPageContext, {}, Props> = ({ tra
 								</p>
 							</div>
 							<hr className="my-3 md:my-4 border-t-1 border-t-gray-700"/>
-						</>
+						</div>
 					))}
 					<p className="italic text-gray-400 text-sm md:text-base">
 						Album&apos;s full length: <span className="text-primary-light">{getFullLength()}</span>

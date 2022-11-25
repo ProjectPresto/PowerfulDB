@@ -38,7 +38,14 @@ const AlbumCreate: NextPageWithLayout = () => {
 	const [errors, setErrors] = useState<[] | null>();
 
 	const initialValues: formValues = {
-		title: '', author: undefined, release_date: '', release_type: { value: 'LP', label: 'LP' }, genres: [], art_cover: undefined
+		title: '',
+		author: router.query.author && router.query.author_name ? { value: router.query.author.toString(), label: router.query.author_name.toString() } :
+			undefined,
+		release_date: '',
+		release_type: router.query.release_type ? { value: router.query.release_type.toString(), label: router.query.release_type.toString() } :
+			{ value: 'LP', label: 'LP' },
+		genres: [],
+		art_cover: undefined
 	};
 
 	const formik = useFormik({

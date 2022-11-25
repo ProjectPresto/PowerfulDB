@@ -1,11 +1,13 @@
 import type { NextComponentType, NextPageContext } from 'next';
+import Link from 'next/link';
+import { useEffect, useState } from 'react';
 import _ from 'lodash';
 
 import Artist from '@models/artist';
 import Band from '@models/band';
 import AlbumsGrid from '@components/authors/viewPage/authorAlbumViews/AlbumsGrid';
-import { useEffect, useState } from 'react';
 import AlbumsList from '@components/authors/viewPage/authorAlbumViews/AlbumsList';
+import { useContributorContext } from '@context/contributorProvider';
 
 interface Props {
 	artist?: Artist;
@@ -13,6 +15,7 @@ interface Props {
 }
 
 const AuthorAlbums: NextComponentType<NextPageContext, {}, Props> = ({ artist, band }: Props) => {
+	const { contributor } = useContributorContext();
 	const providedAlbums = artist?.albums || band?.albums;
 	const [viewType, setViewType] = useState<string | null>('');
 
@@ -51,6 +54,18 @@ const AuthorAlbums: NextComponentType<NextPageContext, {}, Props> = ({ artist, b
 						<h1 className="section-title">
 							{`${releaseType === 'LP' ? 'Long Play' : releaseType} Albums`}
 						</h1>
+						{contributor && (
+							<Link
+								href={`/album/create/?author=${(
+									artist ? 'artist-' : 'band-'
+								) + (
+									artist?.id || band?.id
+								)}&author_name=${artist?.name || band?.name}&release_type=${releaseType}`}
+								className="material-symbols-rounded text-secondary-dark p-0.5 rounded-full bg-primary-accent"
+							>
+								add
+							</Link>
+						)}
 					</div>
 
 					<div className="flex gap-2 md:gap-4">

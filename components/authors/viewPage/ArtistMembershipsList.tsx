@@ -11,7 +11,7 @@ interface Props {
 }
 
 const ArtistMembershipsList: NextComponentType<NextPageContext, {}, Props> = ({ artist }: Props) => {
-	return (
+	return artist.band_memberships.length !== 0 ? (
 		<div>
 			<h1 className="section-title">Band Memberships</h1>
 
@@ -56,7 +56,7 @@ const ArtistMembershipsList: NextComponentType<NextPageContext, {}, Props> = ({ 
 				))}
 			</div>
 		</div>
-	);
+	) : null;
 };
 
 export default ArtistMembershipsList;

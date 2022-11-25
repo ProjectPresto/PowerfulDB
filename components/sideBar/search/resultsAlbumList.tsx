@@ -22,7 +22,8 @@ const ResultsAlbumList: NextComponentType<NextPageContext, {}, Props> = ({ album
 								<Image
 									src={album.art_cover || album.art_cover_url || defaultArtCover}
 									alt={`${album.title} art cover`}
-									// layout="fill"
+									width={75}
+									height={75}
 									className="aspect-square object-cover object-center"
 								/>
 							</div>

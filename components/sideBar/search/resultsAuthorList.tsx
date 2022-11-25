@@ -27,7 +27,8 @@ const ResultsAuthorList: NextComponentType<NextPageContext, {}, Props> = ({ arti
 									<Image
 										src={author.bg_image || author.bg_image_url || defaultBgImage}
 										alt={`${author.name} background image`}
-										// layout="fill"
+										width={75}
+										height={75}
 										className="aspect-square rounded-full object-cover object-center"
 									/>
 								</div>

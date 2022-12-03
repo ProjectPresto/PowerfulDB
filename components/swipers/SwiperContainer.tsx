@@ -36,8 +36,11 @@ const SwiperContainer: NextComponentType<NextPageContext, {}, Props> = ({ config
       </div>
 
       <div
-        className="absolute top-0 bottom-0 right-0 w-16 md:w-36 z-10 rotate-180 pointer-events-none"
-        style={{ background: "linear-gradient(270deg, rgba(27, 28, 34, 0) 0%, #1B1C22 100%)" }}
+        className="absolute top-0 bottom-0 right-0 w-16 md:w-36 z-10 pointer-events-none"
+        style={{
+          background:
+            "linear-gradient(90deg, hsla(231, 11%, 12%, 0) 0%, hsla(231, 11%, 12%, 0.013) 8.1%, hsla(231, 11%, 12%, 0.049) 15.5%, hsla(231, 11%, 12%, 0.104) 22.5%, hsla(231, 11%, 12%, 0.175) 29%, hsla(231, 11%, 12%, 0.259) 35.3%, hsla(231, 11%, 12%, 0.352) 41.2%, hsla(231, 11%, 12%, 0.45) 47.1%, hsla(231, 11%, 12%, 0.55) 52.9%, hsla(231, 11%, 12%, 0.648) 58.8%, hsla(231, 11%, 12%, 0.741) 64.7%, hsla(231, 11%, 12%, 0.825) 71%, hsla(231, 11%, 12%, 0.896) 77.5%, hsla(231, 11%, 12%, 0.951) 84.5%, hsla(231, 11%, 12%, 0.987) 91.9%, hsl(231, 11%, 12%) 100%)",
+        }}
       ></div>
     </Swiper>
   );

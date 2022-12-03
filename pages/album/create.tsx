@@ -1,10 +1,12 @@
 import Head from 'next/head';
 import { useRouter } from 'next/router';
+import Image from 'next/image';
 import { ChangeEvent, ReactElement, useState } from 'react';
 import Select from 'react-select';
 import { useFormik } from 'formik';
 import { toast } from 'react-toastify';
 import * as Yup from 'yup';
+import parseJson from 'parse-json';
 
 import { NextPageWithLayout } from '@pages/_app';
 import { CreateAlbum, typeOptions } from '@models/album';
@@ -13,18 +15,17 @@ import MainLayout from '@components/layouts/MainLayout';
 import AuthorSelect from '@components/forms/AuthorSelect';
 import GenreSelect from '@components/forms/GenreSelect';
 import AlbumService from '@services/AlbumService';
-import parseJson from 'parse-json';
+
+import defaultArtCover from '@public/images/no_image.jpg';
 
 interface formValues {
-	title: string,
-	author?: { value: string, label: string },
-	release_date: string,
-	release_type: { value: string, label: string },
-	genres: { value: string, label: string }[],
-	art_cover?: string,
-	art_cover_url?: string;
+	title: string;
+	author?: { value: string; label: string };
+	release_date: string;
+	release_type: { value: string; label: string };
+	genres: { value: string; label: string }[];
+	art_cover?: Blob;
 }
-
 
 const AlbumSchema = Yup.object().shape({
 	title: Yup.string().label('Title').min(2).max(255).required(),
@@ -39,20 +40,29 @@ const AlbumCreate: NextPageWithLayout = () => {
 
 	const initialValues: formValues = {
 		title: '',
-		author: router.query.author && router.query.author_name ? { value: router.query.author.toString(), label: router.query.author_name.toString() } :
-			undefined,
+		author:
+			router.query.author && router.query.author_name
+				? { value: router.query.author.toString(), label: router.query.author_name.toString() }
+				: undefined,
 		release_date: '',
-		release_type: router.query.release_type ? { value: router.query.release_type.toString(), label: router.query.release_type.toString() } :
-			{ value: 'LP', label: 'LP' },
+		release_type: router.query.release_type
+			? { value: router.query.release_type.toString(), label: router.query.release_type.toString() }
+			: { value: 'LP', label: 'LP' },
 		genres: [],
 		art_cover: undefined
 	};
 
 	const formik = useFormik({
-		initialValues, validationSchema: AlbumSchema, onSubmit: async ({ title, release_date, release_type, art_cover, author, genres }) => {
+		initialValues,
+		validationSchema: AlbumSchema,
+		onSubmit: async ({ title, release_date, release_type, art_cover, author, genres }) => {
 			setErrors([]);
 			const album: CreateAlbum = {
-				title, release_date, release_type: release_type.value, art_cover, genres: []
+				title,
+				release_date,
+				release_type: release_type.value,
+				art_cover,
+				genres: []
 			};
 
 			const authorArr = author?.value.split('-');
@@ -62,18 +72,23 @@ const AlbumCreate: NextPageWithLayout = () => {
 				album['band'] = parseInt(authorArr[1]);
 			}
 
-			genres.forEach(genre => {
+			genres.forEach((genre) => {
 				album.genres.push(parseInt(genre.value));
 			});
 
 			try {
-				const data = await toast.promise(AlbumService.postAlbum(album, {
-					headers: {
-						'Content-Type': 'multipart/form-data'
+				const data = await toast.promise(
+					AlbumService.postAlbum(album, {
+						headers: {
+							'Content-Type': 'multipart/form-data'
+						}
+					}),
+					{
+						pending: 'Adding album',
+						success: 'Album added ✅',
+						error: 'Error when adding album ❌'
 					}
-				}), {
-					pending: 'Adding album', success: 'Album added ✅', error: 'Error when adding album ❌'
-				});
+				);
 				await router.push(`/album/${data.slug}`);
 			} catch (err: any) {
 				setErrors(parseJson(err.request.response));
@@ -92,7 +107,9 @@ const AlbumCreate: NextPageWithLayout = () => {
 
 					<div className="space-y-6 md:space-y-10  text-sm sm:text-base md:text-lg">
 						<div>
-							<label htmlFor="title" className="required-star">Title</label>
+							<label htmlFor="title" className="required-star">
+								Title
+							</label>
 							<input
 								type="text"
 								name="title"
@@ -107,14 +124,18 @@ const AlbumCreate: NextPageWithLayout = () => {
 						</div>
 
 						<div className="space-y-2">
-							<label htmlFor="author-select" className="required-star">Author</label>
+							<label htmlFor="author-select" className="required-star">
+								Author
+							</label>
 							<AuthorSelect formik={formik}/>
 							{formik.errors.author && formik.touched.author ? <div className="text-sm text-red-500">{formik.errors.author}</div> : null}
 						</div>
 
 						<div className="flex gap-8">
 							<div className="flex-1 ">
-								<label htmlFor="release_date" className="required-star">Release date</label>
+								<label htmlFor="release_date" className="required-star">
+									Release date
+								</label>
 								<input
 									type="date"
 									name="release_date"
@@ -124,12 +145,15 @@ const AlbumCreate: NextPageWithLayout = () => {
 									onBlur={formik.handleBlur}
 									className="input-style"
 								/>
-								{formik.errors.release_date && formik.touched.release_date ?
-									<div className="text-sm text-red-500">{formik.errors.release_date}</div> : null}
+								{formik.errors.release_date && formik.touched.release_date ? (
+									<div className="text-sm text-red-500">{formik.errors.release_date}</div>
+								) : null}
 							</div>
 
 							<div className="space-y-2 flex-1">
-								<label htmlFor="release_date" className="required-star">Release type</label>
+								<label htmlFor="release_date" className="required-star">
+									Release type
+								</label>
 								<Select
 									instanceId="release-type-select"
 									options={typeOptions}
@@ -139,8 +163,9 @@ const AlbumCreate: NextPageWithLayout = () => {
 									styles={customSelectStyle}
 									className="w-full"
 								/>
-								{formik.errors.release_type && formik.touched.release_type ?
-									<div className="text-sm text-red-500">{formik.errors.release_type.value}</div> : null}
+								{formik.errors.release_type && formik.touched.release_type ? (
+									<div className="text-sm text-red-500">{formik.errors.release_type.value}</div>
+								) : null}
 							</div>
 						</div>
 
@@ -149,27 +174,40 @@ const AlbumCreate: NextPageWithLayout = () => {
 							<GenreSelect formik={formik}/>
 						</div>
 
-						<div className="flex flex-col gap-y-2 overflow-visible">
-							<label htmlFor="art_cover">Art cover</label>
-							<input
-								type="file"
-								name="art_cover"
-								id="art_cover"
-								onChange={({ currentTarget }: ChangeEvent<HTMLInputElement>) => {
-									currentTarget.files && formik.setFieldValue('art_cover', currentTarget.files[0]);
-								}}
-								className="text-gray-400 file:border-solid file:btn-style file:text-primary-light file:mr-3"
-							/>
+						<div className="flex gap-5 items-center">
+							<div className="space-y-2 flex-grow overflow-hidden ">
+								<label htmlFor="art_cover">Art cover</label>
+								<label htmlFor="art_cover" className="flex items-center">
+									<div className="btn-style text-primary-light mr-3 min-w-fit hover:drop-shadow-none">Choose file</div>
+									<p className="text-gray-400 truncate">{formik.values.art_cover !== undefined ? formik.values.art_cover['name'] : 'No file chosen'}</p>
+								</label>
+								<input
+									type="file"
+									name="art_cover"
+									id="art_cover"
+									onChange={({ currentTarget }: ChangeEvent<HTMLInputElement>) => {
+										currentTarget.files && formik.setFieldValue('art_cover', currentTarget.files[0]);
+									}}
+									className="hidden"
+								/>
+							</div>
+							<div className="space-y-2 min-w-fit">
+								<Image
+									src={formik.values.art_cover !== undefined ? URL.createObjectURL(formik.values.art_cover) : defaultArtCover}
+									alt="Preview of inputted art cover"
+									width={300}
+									height={300}
+									className="aspect-square object-cover object-center h-24 sm:h-32 lg:h-40 w-24 sm:w-32 lg:w-40"
+								/>
+							</div>
 						</div>
 
-						{errors && errors.length !== 0 && (
-							<p className="text-red-500 font-bold">
-								{errors.join(', ')}
-							</p>
-						)}
+						{errors && errors.length !== 0 && <p className="text-red-500 font-bold">{errors.join(', ')}</p>}
 
 						<div className="flex justify-end">
-							<button type="submit" className="btn-style">Create</button>
+							<button type="submit" className="btn-style">
+								Create
+							</button>
 						</div>
 					</div>
 				</form>

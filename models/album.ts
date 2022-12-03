@@ -46,7 +46,7 @@ export interface CreateAlbum {
 	title: string;
 	release_date: string;
 	release_type: string;
-	art_cover?: string;
+	art_cover?: Blob;
 	artist?: number;
 	band?: number;
 	genres: number[];

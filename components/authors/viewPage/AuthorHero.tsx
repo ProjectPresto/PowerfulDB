@@ -40,7 +40,7 @@ const AuthorHero: NextComponentType<NextPageContext, {}, Props> = ({ artist, ban
 			<div className="max-w-screen-lg mx-auto px-6 md:px-12 lg:px-14 pb-6 md:pb-8 lg:pb-10 w-full flex flex-col gap-2">
 				<div className="flex flex-col-reverse md:flex-col gap-1">
 					{artist?.full_name && <p className="text-gray-300 italic drop-shadow-md">{artist.full_name}</p>}
-					<h3 className="font-sans text-5xl md:text-6xl lg:text-7xl drop-shadow-md">{artist?.name || band?.name}</h3>
+					<h3 className="font-bold text-5xl md:text-6xl lg:text-7xl drop-shadow-md">{artist?.name || band?.name}</h3>
 				</div>
 
 				{genres.length !== 0 && <p className="text-sm md:text-base lg:text-lg xl:text-xl drop-shadow-sm">{genres.join(', ')}</p>}

@@ -5,9 +5,9 @@ import _ from 'lodash';
 
 import Artist from '@models/artist';
 import Band from '@models/band';
-import AlbumsGrid from '@components/authors/viewPage/authorAlbumViews/AlbumsGrid';
-import AlbumsList from '@components/authors/viewPage/authorAlbumViews/AlbumsList';
+import AlbumsList from '@components/albums/AlbumsList';
 import { useContributorContext } from '@context/contributorProvider';
+import AlbumCard from '@components/albums/AlbumCard';
 
 interface Props {
 	artist?: Artist;
@@ -80,7 +80,15 @@ const AuthorAlbums: NextComponentType<NextPageContext, {}, Props> = ({ artist, b
 
 				<hr className="section-hr"/>
 
-				{viewType === 'grid' ? <AlbumsGrid albums={albums}/> : <AlbumsList albums={albums}/>}
+				{viewType === 'grid' ?
+					(
+						<div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 gap-x-4 lg:gap-x-6 xl:gap-x-8 gap-y-6 md:gap-y-12">
+							{albums.map((album) => (
+								<AlbumCard key={album.id} album={album} config={{ showYear: true }}/>
+							))}
+						</div>
+					) :
+					<AlbumsList albums={albums}/>}
 			</div>
 		))}
 	</>;

@@ -34,7 +34,7 @@ const Login: NextComponentType<NextPageContext, {}> = () => {
 			}}
 		>
 			<div className="px-6 md:px-10 lg:px-14 py-6 md:py-10 bg-primary-dark rounded-3xl max-w-lg m-4">
-				<h1 className="font-sans text-2xl md:text-3xl mb-1">Login</h1>
+				<h1 className="font-bold text-2xl md:text-3xl mb-4">Login</h1>
 
 				<p className="text-sm md:text-base">Please fill out the following fields to login:</p>
 

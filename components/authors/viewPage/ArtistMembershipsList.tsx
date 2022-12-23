@@ -37,13 +37,13 @@ const ArtistMembershipsList: NextComponentType<NextPageContext, {}, Props> = ({ 
 							<div className="z-10 flex flex-col items-center justify-center w-full h-full group gap-0 md:gap-1">
 
 								<h1
-									className="font-sans text-3xl md:text-4xl relative after:cool-underline after:bg-main-light group-hover:after:cool-underline-hover
+									className="font-bold text-2xl md:text-3xl relative after:cool-underline after:bg-main-light group-hover:after:cool-underline-hover
 									drop-shadow-md"
 								>
 									{membership.band.name}
 								</h1>
 
-								<p className="text-center max-w-xs text-xs md:text-sm drop-shadow-md two-line-truncate px-4" title={membership.roles}>
+								<p className="text-center max-w-xs text-xs md:text-sm drop-shadow-md two-line-truncate px-4 text-gray-300" title={membership.roles}>
 									{membership.roles}
 								</p>
 

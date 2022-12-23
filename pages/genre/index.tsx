@@ -6,12 +6,12 @@ import { NextPageWithLayout } from '@pages/_app';
 import GenreService from '@services/GenreService';
 import GenreCard from '@components/genres/GenreCard';
 import MainLayout from '@components/layouts/MainLayout';
-import TitleComponent from '@components/generic/TitleComponent';
-import PaginationComponent from '@components/generic/PaginationComponent';
+import TitleComponent from '@components/TitleComponent';
+import PaginationComponent from '@components/PaginationComponent';
 import Genre from '@models/genre';
 import { Pagination, UrlQueries } from '@models/generic';
-import TextFilterComponent from '@components/generic/filters/TextFilterComponent';
-import SelectFilterComponent from '@components/generic/filters/SelectFilterComponent';
+import TextFilterComponent from '@components/filters/TextFilterComponent';
+import SelectFilterComponent from '@components/filters/SelectFilterComponent';
 
 interface GenreIndex {
 	genres: Genre[];

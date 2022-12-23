@@ -6,12 +6,12 @@ import { NextPageWithLayout } from '@pages/_app';
 import ArtistService from '@services/ArtistService';
 import MainLayout from '@components/layouts/MainLayout';
 import AuthorCard from '@components/authors/AuthorCard';
-import TitleComponent from '@components/generic/TitleComponent';
-import PaginationComponent from '@components/generic/PaginationComponent';
-import SelectFilterComponent from '@components/generic/filters/SelectFilterComponent';
+import TitleComponent from '@components/TitleComponent';
+import PaginationComponent from '@components/PaginationComponent';
+import SelectFilterComponent from '@components/filters/SelectFilterComponent';
 import { SimplifiedArtist } from '@models/artist';
 import { Pagination, UrlQueries } from '@models/generic';
-import GenreFilterComponent from '@components/generic/filters/GenreFilterComponent';
+import GenreFilterComponent from '@components/filters/GenreFilterComponent';
 
 interface ArtistIndex {
 	artists: SimplifiedArtist[];

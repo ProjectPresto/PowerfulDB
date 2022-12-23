@@ -7,7 +7,7 @@ import Band from '@models/band';
 import MainLayout from '@components/layouts/MainLayout';
 import BandService from '@services/BandService';
 import AuthorHero from '@components/authors/viewPage/AuthorHero';
-import ArticleContainer from '@components/generic/ArticleContainer';
+import ArticleContainer from '@components/ArticleContainer';
 import AuthorAlbums from '@components/authors/viewPage/AuthorAlbums';
 import BandMembersList from '@components/authors/viewPage/BandMembersList';
 

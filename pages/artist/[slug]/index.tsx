@@ -7,7 +7,7 @@ import Artist from '@models/artist';
 import AuthorHero from '@components/authors/viewPage/AuthorHero';
 import MainLayout from '@components/layouts/MainLayout';
 import ArtistService from '@services/ArtistService';
-import ArticleContainer from '@components/generic/ArticleContainer';
+import ArticleContainer from '@components/ArticleContainer';
 import AuthorAlbums from '@components/authors/viewPage/AuthorAlbums';
 import ArtistMembershipsList from '@components/authors/viewPage/ArtistMembershipsList';
 

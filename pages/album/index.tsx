@@ -6,10 +6,10 @@ import { NextPageWithLayout } from '@pages/_app';
 import AlbumService from '@services/AlbumService';
 import AlbumCard from '@components/albums/AlbumCard';
 import MainLayout from '@components/layouts/MainLayout';
-import TitleComponent from '@components/generic/TitleComponent';
-import PaginationComponent from '@components/generic/PaginationComponent';
-import SelectFilterComponent from '@components/generic/filters/SelectFilterComponent';
-import GenreFilterComponent from '@components/generic/filters/GenreFilterComponent';
+import TitleComponent from '@components/TitleComponent';
+import PaginationComponent from '@components/PaginationComponent';
+import SelectFilterComponent from '@components/filters/SelectFilterComponent';
+import GenreFilterComponent from '@components/filters/GenreFilterComponent';
 import Album from '@models/album';
 import { Pagination, UrlQueries } from '@models/generic';
 
@@ -20,8 +20,8 @@ interface AlbumIndex {
 
 const AlbumIndex: NextPageWithLayout<AlbumIndex> = ({ albums, pagination }) => {
 	const sortOptions = [
-		{ value: 'title', label: 'Title Ascending' },
-		{ value: '-title', label: 'Title Descending' },
+		{ value: 'title', label: 'TitleComponent Ascending' },
+		{ value: '-title', label: 'TitleComponent Descending' },
 		{ value: 'release_date', label: 'Oldest First' },
 		{ value: '-release_date', label: 'Newest First' }
 	];

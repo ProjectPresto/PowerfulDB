@@ -5,13 +5,13 @@ import { ReactElement } from 'react';
 import { NextPageWithLayout } from '@pages/_app';
 import { Pagination, UrlQueries } from '@models/generic';
 import MainLayout from '@components/layouts/MainLayout';
-import TitleComponent from '@components/generic/TitleComponent';
-import PaginationComponent from '@components/generic/PaginationComponent';
-import TextFilterComponent from '@components/generic/filters/TextFilterComponent';
+import TitleComponent from '@components/TitleComponent';
+import TextFilterComponent from '@components/filters/TextFilterComponent';
 import { Contributor } from '@models/user';
 import UserService from '@services/UserService';
 import ContributorCard from '@components/users/ContributorCard';
-import SelectFilterComponent from '@components/generic/filters/SelectFilterComponent';
+import SelectFilterComponent from '@components/filters/SelectFilterComponent';
+import PaginationComponent from '@components/PaginationComponent';
 
 interface UserIndex {
 	contributors: Contributor[];

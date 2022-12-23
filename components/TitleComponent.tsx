@@ -15,7 +15,7 @@ const TitleComponent: NextComponentType<NextPageContext, {}, Props> = ({ content
 		<div className="mb-8">
 			<div className="flex items-center justify-between flex-wrap gap-2">
 				<div className="flex items-center gap-4">
-					<h1 className="font-sans text-4xl md:text-5xl">{content}</h1>
+					<h1 className="font-bold text-3xl md:text-4xl">{content}</h1>
 					{contributor && url && (
 						<Link href={url} className="material-symbols-rounded text-secondary-dark p-0.5 rounded-full bg-primary-accent">
 							add

@@ -3,7 +3,7 @@ import { SimplifiedBand } from './band';
 import { Article } from './generic';
 import Genre from './genre';
 import { SimplifiedTrack } from './track';
-import { Option } from '@components/generic/filters/SelectFilterComponent';
+import { Option } from '@components/filters/SelectFilterComponent';
 
 export default interface Album extends SimplifiedAlbum {
 	artist?: SimplifiedArtist;

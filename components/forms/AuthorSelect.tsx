@@ -1,5 +1,5 @@
 import type { NextComponentType, NextPageContext } from 'next';
-import { customSelectStyle, Option } from '@components/generic/filters/SelectFilterComponent';
+import { customSelectStyle, Option } from '@components/filters/SelectFilterComponent';
 import ArtistService from '@services/ArtistService';
 import BandService from '@services/BandService';
 import { StylesConfig } from 'react-select/dist/declarations/src';

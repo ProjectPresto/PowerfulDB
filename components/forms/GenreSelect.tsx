@@ -1,6 +1,6 @@
 import type { NextComponentType, NextPageContext } from 'next';
 import { FormikProps } from 'formik';
-import { customSelectStyle, Option } from '@components/generic/filters/SelectFilterComponent';
+import { customSelectStyle, Option } from '@components/filters/SelectFilterComponent';
 import AsyncSelect from 'react-select/async';
 import GenreService from '@services/GenreService';
 import { StylesConfig } from 'react-select/dist/declarations/src';

@@ -10,7 +10,7 @@ import parseJson from 'parse-json';
 
 import { NextPageWithLayout } from '@pages/_app';
 import { CreateAlbum, typeOptions } from '@models/album';
-import { customSelectStyle } from '@components/generic/filters/SelectFilterComponent';
+import { customSelectStyle } from '@components/filters/SelectFilterComponent';
 import MainLayout from '@components/layouts/MainLayout';
 import AuthorSelect from '@components/forms/AuthorSelect';
 import GenreSelect from '@components/forms/GenreSelect';

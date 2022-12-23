@@ -1,13 +1,15 @@
 import '../styles/globals.css';
 import type { AppProps } from 'next/app';
 import { NextPage } from 'next';
-import { ReactElement, ReactNode } from 'react';
+import { ReactElement, ReactNode, useEffect, useState } from 'react';
 
 import { Slide, ToastContainer } from 'react-toastify';
 
 import 'react-toastify/dist/ReactToastify.css';
-import { ContributorProvider } from '../context/contributorProvider';
+import { ContributorProvider } from '@context/contributorProvider';
 import { ShowLoginProvider } from '@context/showLoginProvider';
+import { Router } from 'next/router';
+import Loader from '@components/Loader';
 
 export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
 	getLayout?: (page: ReactElement) => ReactNode;
@@ -18,14 +20,29 @@ type AppPropsWithLayout = AppProps & {
 };
 
 const MyApp = ({ Component, pageProps }: AppPropsWithLayout) => {
+	const [isLoading, setIsLoading] = useState<boolean>(false);
+
+	useEffect(() => {
+		Router.events.on('routeChangeStart', () => {
+			setIsLoading(true);
+		});
+
+		Router.events.on('routeChangeComplete', () => {
+			setIsLoading(false);
+		});
+
+		Router.events.on('routeChangeError', () => {
+			setIsLoading(false);
+		});
+	}, []);
+
 	const getLayout = Component.getLayout ?? (
 		(page) => page
 	);
 
-	// const { contributor, setContributor } = UseContributorContext();
-
 	return (
 		<>
+			<Loader isLoading={isLoading}/>
 			<ContributorProvider>
 				<ShowLoginProvider>
 					{getLayout(<Component {...pageProps} />)}

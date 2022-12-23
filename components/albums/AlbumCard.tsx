@@ -3,17 +3,23 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 
-import Album, { SimplifiedAlbum } from '@models/album';
+import Album, { AlbumReturnedByAuthor, SimplifiedAlbum } from '@models/album';
 
 import defaultArtCover from '@public/images/no_image.jpg';
+import moment from 'moment';
 
 interface Props {
-	album: Album | SimplifiedAlbum;
+	album: Album | SimplifiedAlbum | AlbumReturnedByAuthor;
+
+	config?: {
+		showArtist?: boolean,
+		showYear?: boolean,
+		showGenres?: boolean
+	};
 }
 
-const AlbumCard: NextComponentType<NextPageContext, {}, Props> = ({ album }: Props) => {
+const AlbumCard: NextComponentType<NextPageContext, {}, Props> = ({ album, config }: Props) => {
 	const router = useRouter();
-	const genreText = album.genres?.map((genre) => genre.name).join(', ');
 
 	return (
 		<div className="group">
@@ -37,22 +43,29 @@ const AlbumCard: NextComponentType<NextPageContext, {}, Props> = ({ album }: Pro
 				</div>
 			</Link>
 
-			<div className="flex flex-col px-1 py-2 xl:p-2 truncate">
+			<div className="px-1 py-2 xl:p-2 truncate">
 				<h3 className="font-bold text-sm lg:text-base xl:text-lg truncate">
 					<Link href={`/album/${album.slug}`}>
 						{album.title}
 					</Link>
 				</h3>
 
-				<p className="text-sm truncate italic">
-					<Link href={album.artist !== null ? `/artist/${album.artist?.slug}` : `/band/${album.band?.slug}`}>
+				{config?.showArtist && (
+					'artist' in album && album?.artist || 'band' in album && album?.band
+				) && <p className="text-sm truncate italic">
+          <Link href={album.artist !== null ? `/artist/${album.artist?.slug}` : `/band/${album.band?.slug}`}>
 						{album.artist?.name || album.band?.name}
-					</Link>
-				</p>
+          </Link>
+        </p>}
 
-				{genreText && (
-					<p className="text-xs truncate italic text-gray-400" title={genreText}>
-						{genreText}
+
+				{config?.showYear && <p className="text-xs md:text-sm truncate text-gray-400">
+					{moment(album.release_date).format('YYYY')}
+        </p>}
+
+				{config?.showGenres && (
+					<p className="text-xs truncate italic text-gray-400" title={album.genres?.map((genre) => genre.name).join(', ')}>
+						{album.genres?.map((genre) => genre.name).join(', ')}
 					</p>
 				)}
 			</div>

@@ -80,7 +80,7 @@ const AlbumIndex: NextPageWithLayout<AlbumIndex> = ({ albums, pagination }) => {
                     gap-x-4 md:gap-x-8 gap-y-8 md:gap-y-12"
 				>
 					{albums.map((album) => (
-						<AlbumCard key={album.id} album={album}/>
+						<AlbumCard key={album.id} album={album} config={{ showArtist: true, showGenres: true }}/>
 					))}
 				</div>
 				<PaginationComponent pagination={pagination}/>

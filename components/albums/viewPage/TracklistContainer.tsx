@@ -1,10 +1,10 @@
 import type { NextComponentType, NextPageContext } from 'next';
 import Link from 'next/link';
-import { useDispatch } from 'react-redux';
 
-import { loginModalOpened } from '@store/helpers';
+import { toggleLoginModal } from '@store/helpers';
 import { SimplifiedTrack } from '@models/track';
 import { useContributorContext } from '@context/contributorProvider';
+import { useAppDispatch } from '@helpers/hooks';
 
 interface Props {
 	tracks: SimplifiedTrack[];
@@ -13,7 +13,7 @@ interface Props {
 
 const TracklistContainer: NextComponentType<NextPageContext, {}, Props> = ({ tracks, fullDuration }: Props) => {
 	const { contributor } = useContributorContext();
-	const dispatch = useDispatch();
+	const dispatch = useAppDispatch();
 
 	const getFullLength = () => {
 		if (fullDuration) {
@@ -86,7 +86,7 @@ const TracklistContainer: NextComponentType<NextPageContext, {}, Props> = ({ tra
 							You can go ahead and create it
 						</Link>
 					) : (
-						<button onClick={() => dispatch(loginModalOpened())} className="hover:underline text-primary-accent">
+						<button onClick={() => dispatch(toggleLoginModal(true))} className="hover:underline text-primary-accent">
 							Log in to add it.
 						</button>
 					)}

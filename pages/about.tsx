@@ -1,14 +1,14 @@
 import Link from 'next/link';
 import React, { ReactElement } from 'react';
-import { useDispatch } from 'react-redux';
 
-import { loginModalOpened } from '@store/helpers';
+import { toggleLoginModal } from '@store/helpers';
+import { useAppDispatch } from '@helpers/hooks';
 import { NextPageWithLayout } from '@pages/_app';
 import MainLayout from '@components/layouts/MainLayout';
 
 
 const AboutPage: NextPageWithLayout = () => {
-	const dispatch = useDispatch();
+	const dispatch = useAppDispatch();
 
 	const myLinks = [
 		{ name: 'Github', url: 'https://github.com/Akasiek' },
@@ -34,7 +34,7 @@ const AboutPage: NextPageWithLayout = () => {
 			</p>
 			<p>
 				<strong>Q. </strong><i>How do I add a new album, artist or band?</i><br/>
-				<strong>A. </strong>First, you need to <a onClick={() => dispatch(loginModalOpened())} className="underline cursor-pointer">log in.</a> Then go to the main page of the
+				<strong>A. </strong>First, you need to <a onClick={() => dispatch(toggleLoginModal(true))} className="underline cursor-pointer">log in.</a> Then go to the main page of the
 				database
 				element you want to add. For example: if you want to add album go <Link href={`/album`}>here</Link> and click on the &quot;Plus&quot; button next to the page title.
 			</p>

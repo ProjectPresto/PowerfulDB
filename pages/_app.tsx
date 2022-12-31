@@ -8,9 +8,9 @@ import { Provider } from 'react-redux';
 import { Slide, ToastContainer } from 'react-toastify';
 
 import 'react-toastify/dist/ReactToastify.css';
-import configureStore from '@store/configureStore';
 import { ContributorProvider } from '@context/contributorProvider';
 import Loader from '@components/Loader';
+import Store from '@store/store';
 
 export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
 	getLayout?: (page: ReactElement) => ReactNode;
@@ -20,7 +20,7 @@ type AppPropsWithLayout = AppProps & {
 	Component: NextPageWithLayout;
 };
 
-const store = configureStore();
+const store = Store;
 
 const MyApp = ({ Component, pageProps }: AppPropsWithLayout) => {
 	const [isLoading, setIsLoading] = useState<boolean>(false);

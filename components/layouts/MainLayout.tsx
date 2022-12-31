@@ -2,7 +2,7 @@ import { ReactNode } from 'react';
 import { useSelector } from 'react-redux';
 
 import FooterContainer from './FooterContainer';
-import { State } from '@store/configureStore';
+import { RootState } from '@store/store';
 import SideBar from '@components/sideBar/SideBar';
 import Login from '@components/login/login';
 
@@ -11,7 +11,7 @@ interface Props {
 }
 
 const MainLayout = ({ children }: Props) => {
-	const isLoginModalOpen = useSelector((state: State) => state.helpers.isLoginModalOpen);
+	const isLoginModalOpen = useSelector((state: RootState) => state.helpers.isLoginModalOpen);
 
 	return (
 		<div className="flex lora.className">

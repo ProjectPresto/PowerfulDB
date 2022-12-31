@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, Dispatch } from '@reduxjs/toolkit';
 
 export type HelpersSliceState = { isLoginModalOpen: boolean }
 
@@ -17,5 +17,7 @@ const slice = createSlice({
 	}
 });
 
-export const { loginModalOpened, loginModalClosed } = slice.actions;
+export const toggleLoginModal = (showLogin: boolean) => (dispatch: Dispatch) =>
+	dispatch(showLogin ? slice.actions.loginModalOpened() : slice.actions.loginModalClosed());
+
 export default slice.reducer;

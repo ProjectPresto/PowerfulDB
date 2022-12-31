@@ -1,15 +1,18 @@
 import { ReactNode } from 'react';
-import SideBar from '@components/sideBar/SideBar';
+import { useSelector } from 'react-redux';
+
 import FooterContainer from './FooterContainer';
+import { State } from '@store/configureStore';
+import SideBar from '@components/sideBar/SideBar';
 import Login from '@components/login/login';
-import { useShowLoginContext } from '@context/showLoginProvider';
 
 interface Props {
 	children: ReactNode;
 }
 
 const MainLayout = ({ children }: Props) => {
-	const { showLogin } = useShowLoginContext();
+	const isLoginModalOpen = useSelector((state: State) => state.helpers.isLoginModalOpen);
+
 	return (
 		<div className="flex lora.className">
 			<SideBar/>
@@ -19,7 +22,7 @@ const MainLayout = ({ children }: Props) => {
 			>
 				<main className="w-full">{children}</main>
 				<FooterContainer/>
-				<div className={`${showLogin ? 'block' : 'hidden'}`}>
+				<div className={`${isLoginModalOpen ? 'block' : 'hidden'}`}>
 					<Login/>
 				</div>
 			</section>

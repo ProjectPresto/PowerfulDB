@@ -3,13 +3,15 @@ import Link from 'next/link';
 import { useState } from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
+import { useDispatch } from 'react-redux';
+
+import { loginModalClosed } from '@store/helpers';
 import { useContributorContext } from '@context/contributorProvider';
-import { useShowLoginContext } from '@context/showLoginProvider';
 
 const Login: NextComponentType<NextPageContext, {}> = () => {
 	const [error, setError] = useState('');
 	const { login } = useContributorContext();
-	const { toggleLoginComponent } = useShowLoginContext();
+	const dispatch = useDispatch();
 
 	const formik = useFormik({
 		initialValues: {
@@ -19,7 +21,7 @@ const Login: NextComponentType<NextPageContext, {}> = () => {
 		}), onSubmit: async ({ username, password }) => {
 			const isLoggedIn = await login(username, password, setError);
 			if (isLoggedIn) {
-				toggleLoginComponent(false);
+				dispatch(loginModalClosed());
 			}
 		}
 	});
@@ -29,7 +31,7 @@ const Login: NextComponentType<NextPageContext, {}> = () => {
 			className="flex justify-center items-center h-screen w-screen bg-secondary-dark/50 backdrop-blur-sm fixed inset-0 z-[60]"
 			onClick={(e) => {
 				if (e.target === e.currentTarget) {
-					toggleLoginComponent(false);
+					dispatch(loginModalClosed());
 				}
 			}}
 		>
@@ -94,7 +96,7 @@ const Login: NextComponentType<NextPageContext, {}> = () => {
 				<button
 					className="material-symbols-outlined absolute top-12 md:top-8 mx-auto md:mx-0 left-0 md:left-auto right-0 md:right-16 md:!text-3xl
                       bg-primary-accent rounded-full w-10 md:w-12 text-primary-dark !aspect-square"
-					onClick={() => toggleLoginComponent(false)}
+					onClick={() => dispatch(loginModalClosed())}
 				>
 					close
 				</button>

@@ -2,16 +2,17 @@ import type { NextComponentType, NextPageContext } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import { ReactElement } from 'react';
+import { useDispatch } from 'react-redux';
 
 import SearchInput from './search/SearchInput';
+import { loginModalOpened } from '@store/helpers';
 import logo from '@public/images/logo.svg';
 import defaultPic from '@public/images/default_profile_pic_dark.svg';
 import { useContributorContext } from '@context/contributorProvider';
-import { useShowLoginContext } from '@context/showLoginProvider';
 
 const SideBar: NextComponentType<NextPageContext, {}> = () => {
 	const { contributor, logout } = useContributorContext();
-	const { toggleLoginComponent } = useShowLoginContext();
+	const dispatch = useDispatch();
 
 	type sideBarOptions = {
 		label: string; icon: string; url: string; auth?: boolean;
@@ -66,7 +67,7 @@ const SideBar: NextComponentType<NextPageContext, {}> = () => {
 
 				<div className="w-full max-w-sm md:absolute inset-x-0 bottom-0 bg-primary-accent text-secondary-dark px-3 md:px-4 py-3">
 					{!contributor ? (
-						<div onClick={() => toggleLoginComponent(true)} className="cursor-pointer">
+						<div onClick={() => dispatch(loginModalOpened())} className="cursor-pointer">
 							<a className="flex items-center justify-start gap-3 md:gap-4">
 								<p className="material-symbols-outlined !text-xl md:!text-2xl">login</p>
 								<p className="font-bold md:text-lg">Log in</p>

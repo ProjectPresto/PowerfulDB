@@ -1,14 +1,15 @@
 import '../styles/globals.css';
-import type { AppProps } from 'next/app';
 import { NextPage } from 'next';
+import type { AppProps } from 'next/app';
+import { Router } from 'next/router';
 import { ReactElement, ReactNode, useEffect, useState } from 'react';
 
+import { Provider } from 'react-redux';
 import { Slide, ToastContainer } from 'react-toastify';
 
 import 'react-toastify/dist/ReactToastify.css';
+import configureStore from '@store/configureStore';
 import { ContributorProvider } from '@context/contributorProvider';
-import { ShowLoginProvider } from '@context/showLoginProvider';
-import { Router } from 'next/router';
 import Loader from '@components/Loader';
 
 export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
@@ -18,6 +19,8 @@ export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
 type AppPropsWithLayout = AppProps & {
 	Component: NextPageWithLayout;
 };
+
+const store = configureStore();
 
 const MyApp = ({ Component, pageProps }: AppPropsWithLayout) => {
 	const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -44,9 +47,9 @@ const MyApp = ({ Component, pageProps }: AppPropsWithLayout) => {
 		<>
 			<Loader isLoading={isLoading}/>
 			<ContributorProvider>
-				<ShowLoginProvider>
+				<Provider store={store}>
 					{getLayout(<Component {...pageProps} />)}
-				</ShowLoginProvider>
+				</Provider>
 			</ContributorProvider>
 			<ToastContainer className="toastify" theme="dark" autoClose={5000} pauseOnFocusLoss={false} transition={Slide}/>
 		</>

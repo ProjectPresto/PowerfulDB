@@ -38,6 +38,9 @@
       ],
       "@context/*": [
         "context/*"
+      ],
+      "@store/*": [
+        "store/*"
       ]
     },
     "plugins": [

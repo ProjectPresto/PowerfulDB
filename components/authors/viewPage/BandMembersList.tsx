@@ -1,10 +1,11 @@
 import type { NextComponentType, NextPageContext } from 'next';
 import Link from 'next/link';
 import _ from 'lodash';
+import { useDispatch } from 'react-redux';
 
+import { loginModalOpened } from '@store/helpers';
 import { useContributorContext } from '@context/contributorProvider';
 import Band from '@models/band';
-import { useShowLoginContext } from '@context/showLoginProvider';
 import BandMemberCard from '@components/authors/viewPage/BandMemberCard';
 
 interface Props {
@@ -13,7 +14,7 @@ interface Props {
 
 const BandMembersList: NextComponentType<NextPageContext, {}, Props> = ({ band }: Props) => {
 	const { contributor } = useContributorContext();
-	const { toggleLoginComponent } = useShowLoginContext();
+	const dispatch = useDispatch();
 
 	const groupedMembers = _.chain(band.band_members)
 		.groupBy((member) => !!member.quit_year)
@@ -54,7 +55,7 @@ const BandMembersList: NextComponentType<NextPageContext, {}, Props> = ({ band }
 							You can go ahead and add them
 						</Link>
 					) : (
-						<button onClick={() => toggleLoginComponent()} className="hover:underline text-primary-accent">
+						<button onClick={() => dispatch(loginModalOpened())} className="hover:underline text-primary-accent">
 							Log in to add them.
 						</button>
 					)}

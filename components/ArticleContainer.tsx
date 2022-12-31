@@ -1,9 +1,10 @@
 import type { NextComponentType, NextPageContext } from 'next';
 import Link from 'next/link';
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 
+import { loginModalOpened } from '@store/helpers';
 import { useContributorContext } from '@context/contributorProvider';
-import { useShowLoginContext } from '@context/showLoginProvider';
 import { AlbumArticle } from '@models/album';
 import { ArtistArticle } from '@models/artist';
 import { BandArticle } from '@models/band';
@@ -15,7 +16,7 @@ interface Props {
 
 const ArticleContainer: NextComponentType<NextPageContext, {}, Props> = ({ article }: Props) => {
 	const { contributor } = useContributorContext();
-	const { toggleLoginComponent } = useShowLoginContext();
+	const dispatch = useDispatch();
 	const [isArticleOpen, setIsArticleOpen] = useState<boolean>(false);
 
 	const scrollToTop = () => {
@@ -82,7 +83,7 @@ const ArticleContainer: NextComponentType<NextPageContext, {}, Props> = ({ artic
 								You can go ahead and create it
 							</Link>
 						) : (
-							<button onClick={() => toggleLoginComponent()} className="hover:underline text-primary-accent">
+							<button onClick={() => dispatch(loginModalOpened())} className="hover:underline text-primary-accent">
 								Log in to add it.
 							</button>
 						)}

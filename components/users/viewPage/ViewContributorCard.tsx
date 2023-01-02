@@ -1,4 +1,4 @@
-import { Contributor } from '@models/user';
+import { Contributor, getContributionsCountAsArray } from '@models/user';
 import type { NextComponentType, NextPageContext } from 'next';
 import Image from 'next/image';
 
@@ -7,20 +7,10 @@ interface Props {
 }
 
 const ViewContributorCard: NextComponentType<NextPageContext, {}, Props> = ({ contributor }: Props) => {
-	const {
-		total, points, createdAlbums, createdTracks, createdArtists, createdBands, createdGenres, createdBandMembers
-	} = contributor.contributions.counts;
+	const { total, points } = contributor.contributions.counts;
 
-	const countsList = [
-		{ value: createdAlbums, icon: 'album', label: 'Albums' },
-		{ value: createdTracks, icon: 'library_music', label: 'Tracks' },
-		{ value: createdArtists, icon: 'mic_external_on', label: 'Artists' },
-		{ value: createdBands, icon: 'groups', label: 'Bands' },
-		{ value: createdGenres, icon: 'collections_bookmark', label: 'Genres' },
-		{ value: createdBandMembers, icon: 'person_add', label: 'Members' },
-		{ value: 0, icon: 'feed', label: 'Articles' },
-		{ value: 0, icon: 'edit', label: 'Edits' }
-	];
+	const arrayOfContributionsCount = getContributionsCountAsArray(contributor.contributions.counts, true);
+
 	return (
 		<div
 			className="rounded-3xl bg-primary-dark overflow-hidden h-fit xl:max-w-sm mx-auto
@@ -59,13 +49,13 @@ const ViewContributorCard: NextComponentType<NextPageContext, {}, Props> = ({ co
 				className="py-6 px-4 sm:p-6 grid gap-x-2 gap-y-4 m-auto text-center w-full sm:w-auto xl:w-full
                 grid-cols-3 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4"
 			>
-				{countsList.map((element) => (
-					<div key={element.label}>
+				{arrayOfContributionsCount.map((contribution) => (
+					<div key={contribution.label}>
 						<p className="lg:text-lg font-bold flex justify-center gap-1 items-center">
-							<span className="material-symbols-rounded !text-base lg:!text-lg">{element.icon}</span>
-							{element.value}
+							<span className="material-symbols-rounded !text-base lg:!text-lg">{contribution.icon}</span>
+							{contribution.value}
 						</p>
-						<p className="text-sm xl:text-base">{element.label}</p>
+						<p className="text-sm xl:text-base">{contribution.label}</p>
 					</div>
 				))}
 			</div>

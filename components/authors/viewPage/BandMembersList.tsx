@@ -1,10 +1,11 @@
 import type { NextComponentType, NextPageContext } from 'next';
 import Link from 'next/link';
 import _ from 'lodash';
+import { useSelector } from 'react-redux';
 
+import { getContributor } from '@store/auth';
 import { toggleLoginModal } from '@store/helpers';
 import { useAppDispatch } from '@helpers/hooks';
-import { useContributorContext } from '@context/contributorProvider';
 import Band from '@models/band';
 import BandMemberCard from '@components/authors/viewPage/BandMemberCard';
 
@@ -13,7 +14,7 @@ interface Props {
 }
 
 const BandMembersList: NextComponentType<NextPageContext, {}, Props> = ({ band }: Props) => {
-	const { contributor } = useContributorContext();
+	const contributor = useSelector(getContributor);
 	const dispatch = useAppDispatch();
 
 	const groupedMembers = _.chain(band.band_members)

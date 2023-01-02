@@ -2,11 +2,12 @@ import type { NextComponentType, NextPageContext } from 'next';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import _ from 'lodash';
+import { useSelector } from 'react-redux';
 
+import { getContributor } from '@store/auth';
 import Artist from '@models/artist';
 import Band from '@models/band';
 import AlbumsList from '@components/albums/AlbumsList';
-import { useContributorContext } from '@context/contributorProvider';
 import AlbumCard from '@components/albums/AlbumCard';
 
 interface Props {
@@ -15,7 +16,8 @@ interface Props {
 }
 
 const AuthorAlbums: NextComponentType<NextPageContext, {}, Props> = ({ artist, band }: Props) => {
-	const { contributor } = useContributorContext();
+	const contributor = useSelector(getContributor);
+
 	const providedAlbums = artist?.albums || band?.albums;
 	const [viewType, setViewType] = useState<string | null>('');
 

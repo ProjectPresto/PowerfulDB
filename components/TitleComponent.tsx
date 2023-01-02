@@ -1,7 +1,8 @@
 import type { NextComponentType, NextPageContext } from 'next';
 import Link from 'next/link';
+import { useSelector } from 'react-redux';
 
-import { useContributorContext } from '@context/contributorProvider';
+import { getContributor } from '@store/auth';
 
 interface Props {
 	content: string;
@@ -9,7 +10,7 @@ interface Props {
 }
 
 const TitleComponent: NextComponentType<NextPageContext, {}, Props> = ({ content, url }: Props) => {
-	const { contributor } = useContributorContext();
+	const contributor = useSelector(getContributor);
 
 	return (
 		<div className="mb-8">

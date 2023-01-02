@@ -3,37 +3,38 @@ import Link from 'next/link';
 import { useState } from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
+import { toast } from 'react-toastify';
 
 import { useAppDispatch } from '@helpers/hooks';
 import { toggleLoginModal } from '@store/helpers';
-import { useContributorContext } from '@context/contributorProvider';
+import { logInContributor } from '@store/auth';
 
 const Login: NextComponentType<NextPageContext, {}> = () => {
-	const [error, setError] = useState('');
-	const { login } = useContributorContext();
+	const [requestError, setRequestError] = useState<string | null>(null);
 	const dispatch = useAppDispatch();
 
 	const formik = useFormik({
 		initialValues: {
 			username: '', password: ''
 		}, validationSchema: Yup.object({
-			username: Yup.string().required().max(150), password: Yup.string().required().max(128).min(5)
+			username: Yup.string().required().max(150),
+			password: Yup.string().required().max(128).min(5)
 		}), onSubmit: async ({ username, password }) => {
-			const isLoggedIn = await login(username, password, setError);
-			if (isLoggedIn) {
-				dispatch(toggleLoginModal(false));
+			try {
+				dispatch(logInContributor(username, password, setRequestError));
+			} catch (err: any) {
+				toast.error(err.message);
 			}
 		}
 	});
 
+	const { errors: formErrors, touched } = formik;
+
 	return (
 		<div
 			className="flex justify-center items-center h-screen w-screen bg-secondary-dark/50 backdrop-blur-sm fixed inset-0 z-[60]"
-			onClick={(e) => {
-				if (e.target === e.currentTarget) {
-					dispatch(toggleLoginModal(false));
-				}
-			}}
+			onClick={(e) => e.target === e.currentTarget && dispatch(toggleLoginModal(false))
+			}
 		>
 			<div className="px-6 md:px-10 lg:px-14 py-6 md:py-10 bg-primary-dark rounded-3xl max-w-lg m-4">
 				<h1 className="font-bold text-2xl md:text-3xl mb-4">Login</h1>
@@ -57,7 +58,7 @@ const Login: NextComponentType<NextPageContext, {}> = () => {
 							onBlur={formik.handleBlur}
 							onChange={formik.handleChange}
 						/>
-						{formik.touched.username && formik.errors.username && <p className="text-red-500">{formik.errors.username}</p>}
+						{touched.username && formErrors.username && <p className="text-red-500">{formErrors.username}</p>}
 					</div>
 
 					<div>
@@ -72,7 +73,7 @@ const Login: NextComponentType<NextPageContext, {}> = () => {
 							onBlur={formik.handleBlur}
 							onChange={formik.handleChange}
 						/>
-						{formik.touched.password && formik.errors.password && <p className="text-red-500">{formik.errors.password}</p>}
+						{touched.password && formErrors.password && <p className="text-red-500">{formErrors.password}</p>}
 					</div>
 
 					<div className="text-gray-400 flex flex-col gap-1 text-xs sm:text-sm md:text-base">
@@ -84,7 +85,7 @@ const Login: NextComponentType<NextPageContext, {}> = () => {
 						</p>
 					</div>
 
-					{error !== '' && <p className="text-base text-red-500">{error}</p>}
+					{requestError && <p className="text-base text-red-500">{requestError}</p>}
 
 					<div className="flex justify-end">
 						<button type="submit" className="btn-style">

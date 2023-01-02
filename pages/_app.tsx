@@ -8,9 +8,9 @@ import { Provider } from 'react-redux';
 import { Slide, ToastContainer } from 'react-toastify';
 
 import 'react-toastify/dist/ReactToastify.css';
-import { ContributorProvider } from '@context/contributorProvider';
 import Loader from '@components/Loader';
 import Store from '@store/store';
+import { setContributor } from '@store/auth';
 
 export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
 	getLayout?: (page: ReactElement) => ReactNode;
@@ -26,17 +26,11 @@ const MyApp = ({ Component, pageProps }: AppPropsWithLayout) => {
 	const [isLoading, setIsLoading] = useState<boolean>(false);
 
 	useEffect(() => {
-		Router.events.on('routeChangeStart', () => {
-			setIsLoading(true);
-		});
+		store.dispatch(setContributor());
 
-		Router.events.on('routeChangeComplete', () => {
-			setIsLoading(false);
-		});
-
-		Router.events.on('routeChangeError', () => {
-			setIsLoading(false);
-		});
+		Router.events.on('routeChangeStart', () => setIsLoading(true));
+		Router.events.on('routeChangeComplete', () => setIsLoading(false));
+		Router.events.on('routeChangeError', () => setIsLoading(false));
 	}, []);
 
 	const getLayout = Component.getLayout ?? (
@@ -46,11 +40,9 @@ const MyApp = ({ Component, pageProps }: AppPropsWithLayout) => {
 	return (
 		<>
 			<Loader isLoading={isLoading}/>
-			<ContributorProvider>
-				<Provider store={store}>
-					{getLayout(<Component {...pageProps} />)}
-				</Provider>
-			</ContributorProvider>
+			<Provider store={store}>
+				{getLayout(<Component {...pageProps} />)}
+			</Provider>
 			<ToastContainer className="toastify" theme="dark" autoClose={5000} pauseOnFocusLoss={false} transition={Slide}/>
 		</>
 	);

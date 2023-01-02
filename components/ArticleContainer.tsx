@@ -1,10 +1,11 @@
 import type { NextComponentType, NextPageContext } from 'next';
 import Link from 'next/link';
 import { useState } from 'react';
+import { useSelector } from 'react-redux';
 
+import { getContributor } from '@store/auth';
 import { toggleLoginModal } from '@store/helpers';
 import { useAppDispatch } from '@helpers/hooks';
-import { useContributorContext } from '@context/contributorProvider';
 import { AlbumArticle } from '@models/album';
 import { ArtistArticle } from '@models/artist';
 import { BandArticle } from '@models/band';
@@ -15,8 +16,9 @@ interface Props {
 }
 
 const ArticleContainer: NextComponentType<NextPageContext, {}, Props> = ({ article }: Props) => {
-	const { contributor } = useContributorContext();
 	const dispatch = useAppDispatch();
+	const contributor = useSelector(getContributor);
+
 	const [isArticleOpen, setIsArticleOpen] = useState<boolean>(false);
 
 	const scrollToTop = () => {

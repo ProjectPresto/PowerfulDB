@@ -1,9 +1,10 @@
 import type { NextComponentType, NextPageContext } from 'next';
 import Link from 'next/link';
+import { useSelector } from 'react-redux';
 
+import { getContributor } from '@store/auth';
 import { toggleLoginModal } from '@store/helpers';
 import { SimplifiedTrack } from '@models/track';
-import { useContributorContext } from '@context/contributorProvider';
 import { useAppDispatch } from '@helpers/hooks';
 
 interface Props {
@@ -12,8 +13,8 @@ interface Props {
 }
 
 const TracklistContainer: NextComponentType<NextPageContext, {}, Props> = ({ tracks, fullDuration }: Props) => {
-	const { contributor } = useContributorContext();
 	const dispatch = useAppDispatch();
+	const contributor = useSelector(getContributor);
 
 	const getFullLength = () => {
 		if (fullDuration) {

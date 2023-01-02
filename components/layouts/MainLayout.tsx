@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import FooterContainer from './FooterContainer';
 import { RootState } from '@store/store';
 import SideBar from '@components/sideBar/SideBar';
-import Login from '@components/login/login';
+import Login from '@components/login/Login';
 
 interface Props {
 	children: ReactNode;

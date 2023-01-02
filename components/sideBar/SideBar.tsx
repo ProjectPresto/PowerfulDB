@@ -8,11 +8,12 @@ import { useAppDispatch } from '@helpers/hooks';
 import SearchInput from './search/SearchInput';
 import logo from '@public/images/logo.svg';
 import defaultPic from '@public/images/default_profile_pic_dark.svg';
-import { useContributorContext } from '@context/contributorProvider';
+import { useSelector } from 'react-redux';
+import { getContributor, logOutContributor } from '@store/auth';
 
 const SideBar: NextComponentType<NextPageContext, {}> = () => {
-	const { contributor, logout } = useContributorContext();
 	const dispatch = useAppDispatch();
+	const contributor = useSelector(getContributor);
 
 	type sideBarOptions = {
 		label: string; icon: string; url: string; auth?: boolean;
@@ -94,7 +95,7 @@ const SideBar: NextComponentType<NextPageContext, {}> = () => {
 								</div>
 							</div>
 							<div>
-								<button type="button" onClick={logout} className="material-symbols-outlined text-secondary-dark font-normal !text-lg lg:!text-2xl">
+								<button type="button" onClick={() => dispatch(logOutContributor())} className="material-symbols-outlined text-secondary-dark font-normal !text-lg lg:!text-2xl">
 									logout
 								</button>
 							</div>
